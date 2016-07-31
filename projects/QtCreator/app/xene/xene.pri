@@ -28,18 +28,38 @@ $${xene_DEFINES} \
 ########################################################################
 # xene
 xene_HEADERS += \
+$${XENE_SRC}/xene/xml/libxml2/libxslt/processor.hpp \
+$${XENE_SRC}/xene/xml/libxml2/libxslt/parameters.hpp \
+$${XENE_SRC}/xene/xml/libxml2/libxslt/parameter.hpp \
 $${XENE_SRC}/xene/xml/xslt/processor.hpp \
+$${XENE_SRC}/xene/xml/xslt/extension_module.hpp \
+$${XENE_SRC}/xene/xml/xslt/extension_function.hpp \
+$${XENE_SRC}/xene/xml/xslt/stylesheet.hpp \
+$${XENE_SRC}/xene/xml/xslt/document.hpp \
+$${XENE_SRC}/xene/xml/xslt/parameters.hpp \
+$${XENE_SRC}/xene/xml/xslt/parameter.hpp \
 $${XENE_SRC}/xene/xml/character_writer.hpp \
 $${XENE_SRC}/xene/xml/character_reader.hpp \
 $${XENE_SRC}/xene/xml/character_string.hpp \
 $${XENE_SRC}/xene/xml/character.hpp \
 
 xene_SOURCES += \
-$${XENE_SRC}/xene/xml/xslt/processor.cpp \
+$${XENE_SRC}/xene/xml/libxml2/libxslt/processor.cpp \
+$${XENE_SRC}/xene/xml/libxml2/libxslt/parameters.cpp \
+$${XENE_SRC}/xene/xml/libxml2/libxslt/parameter.cpp \
+$${XENE_SRC}/xene/xml/xslt/extension_module.cpp \
+$${XENE_SRC}/xene/xml/xslt/extension_function.cpp \
+$${XENE_SRC}/xene/xml/xslt/stylesheet.cpp \
+$${XENE_SRC}/xene/xml/xslt/document.cpp \
 $${XENE_SRC}/xene/xml/character_writer.cpp \
 $${XENE_SRC}/xene/xml/character_reader.cpp \
 $${XENE_SRC}/xene/xml/character_string.cpp \
 $${XENE_SRC}/xene/xml/character.cpp \
+
+_xene_SOURCES += \
+$${XENE_SRC}/xene/xml/xslt/processor.cpp \
+$${XENE_SRC}/xene/xml/xslt/parameters.cpp \
+$${XENE_SRC}/xene/xml/xslt/parameter.cpp \
 
 ########################################################################
 # xene
