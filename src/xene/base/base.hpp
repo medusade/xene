@@ -30,6 +30,9 @@
 #include "xos/io/reader.hpp"
 #include "xos/base/to_string.hpp"
 #include "xos/base/string.hpp"
+#include "xos/base/string_extend.hpp"
+#include "xos/base/string_base.hpp"
+#include "xos/base/array.hpp"
 #include "xos/base/types.hpp"
 #include "xos/base/base.hpp"
 

@@ -13,34 +13,32 @@
 /// or otherwise) arising in any way out of the use of this software, 
 /// even if advised of the possibility of such damage.
 ///
-///   File: processor.cpp
+///   File: base.hpp
 ///
 /// Author: $author$
-///   Date: 7/27/2016
+///   Date: 7/31/2016
 ///////////////////////////////////////////////////////////////////////
-#include "xene/xml/xslt/processor.hpp"
+#ifndef _XENE_XML_BASE_HPP
+#define _XENE_XML_BASE_HPP
+
+#include "xene/base/base.hpp"
+#include "xene/io/writer.hpp"
+#include "xene/io/reader.hpp"
 
 namespace xene {
 namespace xml {
-namespace xslt {
 
-///////////////////////////////////////////////////////////////////////
-///  Class: processort
-///////////////////////////////////////////////////////////////////////
+typedef io::char_writer char_writer;
+typedef io::tchar_writer tchar_writer;
+typedef io::wchar_writer wchar_writer;
 
-// Function: processort::get_processor
-template <class TImplements>
-processort<TImplements>* processort<TImplements>::get_processor() {
-    XENE_LOG_MESSAGE_ERROR("...get_processor() not implemented");
-    return 0;
-}
-// Function: processort::free_processor
-template <class TImplements>
-bool processort<TImplements>::free_processor(processort<TImplements>* p) {
-    XENE_LOG_MESSAGE_ERROR("...free_processor() not implemented");
-    return false;
-}
+typedef io::char_reader char_reader;
+typedef io::tchar_reader tchar_reader;
+typedef io::wchar_reader wchar_reader;
 
-} // namespace xslt 
-} // namespace xml 
+} // namespace xml
 } // namespace xene 
+
+#endif // _XENE_XML_BASE_HPP 
+        
+

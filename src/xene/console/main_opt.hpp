@@ -22,8 +22,12 @@
 #define _XENE_CONSOLE_MAIN_OPT_HPP
 
 #include "xene/base/base.hpp"
+#include "xos/base/main.hpp"
 #include "xos/base/getopt/main.hpp"
 #include "xos/base/getopt/main_opt.hpp"
+#include "xos/io/main/err/writer.hpp"
+#include "xos/io/main/out/writer.hpp"
+#include "xos/io/main/in/reader.hpp"
 
 #define XENE_MAIN_LOGGING_OPTVAL_C XOS_MAIN_LOGGING_OPTVAL_C
 #define XENE_MAIN_LOGGING_OPTARG XOS_MAIN_LOGGING_OPTARG

@@ -13,34 +13,25 @@
 /// or otherwise) arising in any way out of the use of this software, 
 /// even if advised of the possibility of such damage.
 ///
-///   File: processor.cpp
+///   File: extension_function.cpp
 ///
 /// Author: $author$
-///   Date: 7/27/2016
+///   Date: 7/28/2016
 ///////////////////////////////////////////////////////////////////////
-#include "xene/xml/xslt/processor.hpp"
+#include "xene/xml/xslt/extension_function.hpp"
 
 namespace xene {
 namespace xml {
 namespace xslt {
 
 ///////////////////////////////////////////////////////////////////////
-///  Class: processort
+///  Class: extension_functiont
 ///////////////////////////////////////////////////////////////////////
-
-// Function: processort::get_processor
-template <class TImplements>
-processort<TImplements>* processort<TImplements>::get_processor() {
-    XENE_LOG_MESSAGE_ERROR("...get_processor() not implemented");
-    return 0;
-}
-// Function: processort::free_processor
-template <class TImplements>
-bool processort<TImplements>::free_processor(processort<TImplements>* p) {
-    XENE_LOG_MESSAGE_ERROR("...free_processor() not implemented");
-    return false;
-}
 
 } // namespace xslt 
 } // namespace xml 
 } // namespace xene 
+
+
+        
+

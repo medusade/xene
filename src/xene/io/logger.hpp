@@ -21,6 +21,8 @@
 #ifndef _XENE_IO_LOGGER_HPP
 #define _XENE_IO_LOGGER_HPP
 
+#include "xene/io/writer.hpp"
+#include "xene/io/reader.hpp"
 #include "xene/base/base.hpp"
 
 #define XENE_LOG_ANY XOS_LOG_ANY

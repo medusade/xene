@@ -45,7 +45,95 @@ public:
 };
 typedef character_writert<> character_writer;
 
-} // namespace xml 
+typedef character_writer character_to_char_writer_implements;
+typedef base character_to_char_writer_extends;
+///////////////////////////////////////////////////////////////////////
+///  Class: character_to_char_writert
+///////////////////////////////////////////////////////////////////////
+template
+<class TImplements = character_to_char_writer_implements,
+ class TExtends = character_to_char_writer_extends>
+
+class _EXPORT_CLASS character_to_char_writert
+: virtual public TImplements, public TExtends {
+public:
+    typedef TImplements Implements;
+    typedef TExtends Extends;
+    ///////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////
+    character_to_char_writert(char_writer& to): to_(to) {
+    }
+    character_to_char_writert
+    (const character_to_char_writert& copy): to_(copy.to_) {
+    }
+    virtual ~character_to_char_writert() {
+    }
+    ///////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////
+    virtual ssize_t write(const character* chars, size_t length) {
+        ssize_t count = 0, amount = 0;
+        size_t clength = 0;
+        const char* cchars = 0;
+        for (; 0 < (length); --length, ++chars, ++count) {
+            if ((cchars = chars->has_chars(clength))) {
+                if (0 >= (amount = to_.write(cchars, clength))) {
+                    return amount;
+                }
+            }
+        }
+        return count;
+    }
+    ///////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////
+protected:
+    char_writer& to_;
+};
+typedef character_to_char_writert<> character_to_char_writer;
+
+typedef char_writer char_to_character_writer_implements;
+typedef base char_to_character_writer_extends;
+///////////////////////////////////////////////////////////////////////
+///  Class: char_to_character_writert
+///////////////////////////////////////////////////////////////////////
+template
+<class TImplements = char_to_character_writer_implements,
+ class TExtends = char_to_character_writer_extends>
+
+class _EXPORT_CLASS char_to_character_writert
+: virtual public TImplements, public TExtends {
+public:
+    typedef TImplements Implements;
+    typedef TExtends Extends;
+    ///////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////
+    char_to_character_writert(character_writer& to): to_(to) {
+    }
+    char_to_character_writert
+    (const char_to_character_writert& copy): to_(copy.to_) {
+    }
+    virtual ~char_to_character_writert() {
+    }
+    ///////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////
+    virtual ssize_t write(const char* chars, size_t length) {
+        ssize_t count = 0, amount = 0;
+        character c;
+        for (; 0 < (length); --length, ++chars, count += amount) {
+            c = *(chars);
+            if (0 >= (amount = to_.write(&c, 1))) {
+                return amount;
+            }
+        }
+        return count;
+    }
+    ///////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////
+protected:
+    character_writer& to_;
+};
+typedef char_to_character_writert<> char_to_character_writer;
+
+} // namespace xml
 } // namespace xene 
 
 #endif // _XENE_XML_CHARACTER_WRITER_HPP 

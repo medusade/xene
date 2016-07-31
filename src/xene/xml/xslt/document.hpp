@@ -13,34 +13,35 @@
 /// or otherwise) arising in any way out of the use of this software, 
 /// even if advised of the possibility of such damage.
 ///
-///   File: processor.cpp
+///   File: document.hpp
 ///
 /// Author: $author$
-///   Date: 7/27/2016
+///   Date: 7/28/2016
 ///////////////////////////////////////////////////////////////////////
-#include "xene/xml/xslt/processor.hpp"
+#ifndef _XENE_XML_XSLT_DOCUMENT_HPP
+#define _XENE_XML_XSLT_DOCUMENT_HPP
+
+#include "xene/xml/character.hpp"
 
 namespace xene {
 namespace xml {
 namespace xslt {
 
+typedef implement_base document_implements;
 ///////////////////////////////////////////////////////////////////////
-///  Class: processort
+///  Class: documentt
 ///////////////////////////////////////////////////////////////////////
-
-// Function: processort::get_processor
-template <class TImplements>
-processort<TImplements>* processort<TImplements>::get_processor() {
-    XENE_LOG_MESSAGE_ERROR("...get_processor() not implemented");
-    return 0;
-}
-// Function: processort::free_processor
-template <class TImplements>
-bool processort<TImplements>::free_processor(processort<TImplements>* p) {
-    XENE_LOG_MESSAGE_ERROR("...free_processor() not implemented");
-    return false;
-}
+template<class TImplements = document_implements>
+class _EXPORT_CLASS documentt: virtual public TImplements {
+public:
+    typedef TImplements Implements;
+    ///////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////
+};
+typedef documentt<> document;
 
 } // namespace xslt 
 } // namespace xml 
 } // namespace xene 
+
+#endif // _XENE_XML_XSLT_DOCUMENT_HPP 

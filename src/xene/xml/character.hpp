@@ -21,7 +21,7 @@
 #ifndef _XENE_XML_CHARACTER_HPP
 #define _XENE_XML_CHARACTER_HPP
 
-#include "xene/base/base.hpp"
+#include "xene/xml/base.hpp"
 
 namespace xene {
 namespace xml {
@@ -41,11 +41,20 @@ public:
 
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
+    charactert(const wchar_t* chars) {
+        this->operator = (chars);
+    }
+    charactert(const char* chars) {
+        this->operator = (chars);
+    }
     charactert(const wchar_t& c) {
         this->operator = (c);
     }
     charactert(const char& c) {
         this->operator = (c);
+    }
+    charactert(const int& i) {
+        this->operator = (i);
     }
     charactert(const charactert& copy): Extends(copy) {
     }
@@ -56,6 +65,14 @@ public:
 
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
+    virtual charactert& operator = (const wchar_t* chars) {
+        this->assign(chars);
+        return *this;
+    }
+    virtual charactert& operator = (const char* chars) {
+        this->assign(chars);
+        return *this;
+    }
     virtual charactert& operator = (const wchar_t& c) {
         this->assign(&c, 1);
         return *this;
@@ -64,9 +81,35 @@ public:
         this->assign(&c, 1);
         return *this;
     }
+    virtual charactert& operator = (const int& i) {
+        const char c = i;
+        this->assign(&c, 1);
+        return *this;
+    }
 
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
+    virtual int operator != (const charactert& to) const {
+        return 0;
+    }
+    virtual int operator != (int to) const {
+        size_t length = 0;
+        const char* chars = 0;
+        if ((chars = this->has_chars(length))) {
+            if (chars[0] > to) {
+                return 1;
+            } else {
+                if (chars[0] < to) {
+                    return -1;
+                }
+            }
+        } else {
+            if (to) {
+                return -1;
+            }
+        }
+        return 0;
+    }
     virtual operator wchar_t() const {
         wchar_t c = 0;
         const char* chars = 0;
