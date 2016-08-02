@@ -57,6 +57,22 @@ public:
     (const character_string& name, const character_string& value) {
         return 0;
     }
+    virtual parameterst* add(const parameterst& p) {
+        typedef typename Extends::const_iterator const_iterator;
+        const_iterator end = this->end();
+        for (const_iterator i = this->begin(); i != end; ++i) {
+            if (((*i)->is_literal())) {
+                if (!(this->add_literal((*i)->name(), (*i)->value()))) {
+                    return 0;
+                }
+            } else {
+                if (!(this->add((*i)->name(), (*i)->value()))) {
+                    return 0;
+                }
+            }
+        }
+        return this;
+    }
     virtual size_t add_end() {
         return 0;
     }

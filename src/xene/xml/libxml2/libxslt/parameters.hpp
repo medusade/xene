@@ -55,6 +55,7 @@ public:
 
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
+    using Extends::add;
     virtual parameter* add_literal
     (const character_string& name, const character_string& value) {
         XENE_LOG_MESSAGE_DEBUG("add_literal(const character_string& name = \"" << character_string_to_string(name) << "\", const character_string& value = \"" << character_string_to_string(value) << "\")...");
@@ -82,7 +83,7 @@ public:
             string *name_added = 0, name_add, value_add;
             name >> name_add;
             value >> value_add;
-            if ((name_added = add_literal(name_add, value_add))) {
+            if ((name_added = add(name_add, value_add))) {
                 parameter p(name, value), *added = 0;
                 if ((added = add_parameter(p))) {
                     this->push_back(added);

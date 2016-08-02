@@ -26,7 +26,7 @@
 namespace xene {
 namespace xml {
 
-typedef implement_base character_writer_implements;
+typedef char_writer character_writer_implements;
 ///////////////////////////////////////////////////////////////////////
 ///  Class: character_writert
 ///////////////////////////////////////////////////////////////////////
@@ -36,7 +36,11 @@ public:
     typedef TImplements Implements;    
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
-    virtual ssize_t write(const character* chars, size_t length) {
+    virtual ssize_t write(const character* chars, ssize_t length) {
+        ssize_t count = 0;
+        return count;
+    }
+    virtual ssize_t write(const char* chars, ssize_t length) {
         ssize_t count = 0;
         return count;
     }
@@ -70,7 +74,7 @@ public:
     }
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
-    virtual ssize_t write(const character* chars, size_t length) {
+    virtual ssize_t write(const character* chars, ssize_t length) {
         ssize_t count = 0, amount = 0;
         size_t clength = 0;
         const char* cchars = 0;
@@ -83,6 +87,10 @@ public:
         }
         return count;
     }
+    virtual ssize_t write(const char* chars, ssize_t length) {
+        ssize_t count = to_.write(chars, length);
+        return count;
+    }
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
 protected:
@@ -90,7 +98,7 @@ protected:
 };
 typedef character_to_char_writert<> character_to_char_writer;
 
-typedef char_writer char_to_character_writer_implements;
+typedef character_writer char_to_character_writer_implements;
 typedef base char_to_character_writer_extends;
 ///////////////////////////////////////////////////////////////////////
 ///  Class: char_to_character_writert
@@ -115,7 +123,7 @@ public:
     }
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
-    virtual ssize_t write(const char* chars, size_t length) {
+    virtual ssize_t write(const char* chars, ssize_t length) {
         ssize_t count = 0, amount = 0;
         character c;
         for (; 0 < (length); --length, ++chars, count += amount) {
@@ -124,6 +132,10 @@ public:
                 return amount;
             }
         }
+        return count;
+    }
+    virtual ssize_t write(const character* chars, ssize_t length) {
+        ssize_t count = to_.write(chars, length);
         return count;
     }
     ///////////////////////////////////////////////////////////////////////
