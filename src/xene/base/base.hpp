@@ -21,12 +21,17 @@
 #ifndef _XENE_BASE_BASE_HPP
 #define _XENE_BASE_BASE_HPP
 
+#include "xos/fs/path.hpp"
+#include "xos/fs/path_separator.hpp"
+#include "xos/fs/path_separator_events.hpp"
 #include "xos/io/logger.hpp"
 #include "xos/io/write/file.hpp"
 #include "xos/io/file/writer.hpp"
+#include "xos/io/string/writer.hpp"
 #include "xos/io/writer.hpp"
 #include "xos/io/read/file.hpp"
 #include "xos/io/file/reader.hpp"
+#include "xos/io/string/reader.hpp"
 #include "xos/io/reader.hpp"
 #include "xos/base/to_string.hpp"
 #include "xos/base/string.hpp"
@@ -56,6 +61,10 @@ typedef xos::base::wstring wstring;
 typedef xos::base::pointer_to_string pointer_to_string;
 typedef xos::base::chars_to_string chars_to_string;
 typedef xos::base::char_to_string char_to_string;
+
+typedef xos::base::char_array char_array;
+typedef xos::base::tchar_array tchar_array;
+typedef xos::base::wchar_array wchar_array;
 
 } // namespace xene
 

@@ -13,19 +13,15 @@
 /// or otherwise) arising in any way out of the use of this software, 
 /// even if advised of the possibility of such damage.
 ///
-///   File: text_encoder.cpp
+///   File: path.cpp
 ///
 /// Author: $author$
-///   Date: 7/27/2016
+///   Date: 8/3/2016
 ///////////////////////////////////////////////////////////////////////
-#include "xene/xml/text_encoder.hpp"
+#include "xene/fs/path.hpp"
 
 namespace xene {
-namespace xml {
+namespace fs {
 
-///////////////////////////////////////////////////////////////////////
-///  Class: text_encodert
-///////////////////////////////////////////////////////////////////////
-
-} // namespace xml 
+} // namespace fs 
 } // namespace xene 

@@ -87,6 +87,10 @@ public:
         }
         return count;
     }
+    virtual ssize_t writefv(const char* format, va_list va) {
+        ssize_t count = to_.writefv(format, va);
+        return count;
+    }
     virtual ssize_t write(const char* chars, ssize_t length) {
         ssize_t count = to_.write(chars, length);
         return count;

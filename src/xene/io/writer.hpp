@@ -35,7 +35,17 @@ typedef xos::io::wchar_writer wchar_writer;
 typedef xos::io::byte_writer byte_writer;
 typedef xos::io::word_writer word_writer;
 
+namespace string {
+
+typedef xos::io::string::writer writer;
+
+typedef xos::io::string::char_writer char_writer;
+typedef xos::io::string::tchar_writer tchar_writer;
+typedef xos::io::string::wchar_writer wchar_writer;
+
+} // namespace string
+
 } // namespace io
-} // namespace xene 
+} // namespace xene
 
 #endif // _XENE_IO_WRITER_HPP 

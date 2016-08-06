@@ -26,6 +26,8 @@
 #include "xene/xml/xslt/stylesheet.hpp"
 #include "xene/xml/xslt/document.hpp"
 #include "xene/xml/xslt/parameters.hpp"
+#include "xene/xml/attribute_encoder.hpp"
+#include "xene/xml/text_encoder.hpp"
 #include "xene/xml/character_writer.hpp"
 #include "xene/xml/character_reader.hpp"
 #include "xene/xml/character_string.hpp"

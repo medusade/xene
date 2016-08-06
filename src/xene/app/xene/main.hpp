@@ -13,19 +13,38 @@
 /// or otherwise) arising in any way out of the use of this software, 
 /// even if advised of the possibility of such damage.
 ///
-///   File: text_encoder.cpp
+///   File: main.hpp
 ///
 /// Author: $author$
-///   Date: 7/27/2016
+///   Date: 8/4/2016
 ///////////////////////////////////////////////////////////////////////
-#include "xene/xml/text_encoder.hpp"
+#ifndef _XENE_APP_XENE_MAIN_HPP
+#define _XENE_APP_XENE_MAIN_HPP
+
+#include "xene/xml/xslt/processor.hpp"
+
+#define XENE_APP_XENE_NAME "xene"
+
+#define XENE_APP_XENE_XML_FILE_EXTENSION "xml"
+#define XENE_APP_XENE_XSLT_FILE_EXTENSION "xslt"
+#define XENE_APP_XENE_EXTENSION_SEPARATOR "."
+
+#define XENE_APP_XENE_XSLT_NAME \
+    XENE_APP_XENE_NAME \
+    XENE_APP_XENE_EXTENSION_SEPARATOR \
+    XENE_APP_XENE_XSLT_FILE_EXTENSION
+
+#define XENE_APP_XENE_XML_NAME \
+    XENE_APP_XENE_NAME \
+    XENE_APP_XENE_EXTENSION_SEPARATOR \
+    XENE_APP_XENE_XML_FILE_EXTENSION
 
 namespace xene {
-namespace xml {
+namespace app {
+namespace xene {
 
-///////////////////////////////////////////////////////////////////////
-///  Class: text_encodert
-///////////////////////////////////////////////////////////////////////
-
-} // namespace xml 
 } // namespace xene 
+} // namespace app 
+} // namespace xene 
+
+#endif // _XENE_APP_XENE_MAIN_HPP 

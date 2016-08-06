@@ -13,19 +13,24 @@
 /// or otherwise) arising in any way out of the use of this software, 
 /// even if advised of the possibility of such damage.
 ///
-///   File: text_encoder.cpp
+///   File: path.hpp
 ///
 /// Author: $author$
-///   Date: 7/27/2016
+///   Date: 8/3/2016
 ///////////////////////////////////////////////////////////////////////
-#include "xene/xml/text_encoder.hpp"
+#ifndef _XENE_FS_PATH_HPP
+#define _XENE_FS_PATH_HPP
+
+#include "xene/base/base.hpp"
 
 namespace xene {
-namespace xml {
+namespace fs {
 
-///////////////////////////////////////////////////////////////////////
-///  Class: text_encodert
-///////////////////////////////////////////////////////////////////////
+typedef xos::fs::path path;
+typedef xos::fs::path_separator path_separator;
+typedef xos::fs::path_separator_events path_separator_events;
 
-} // namespace xml 
+} // namespace fs
 } // namespace xene 
+
+#endif // _XENE_FS_PATH_HPP 

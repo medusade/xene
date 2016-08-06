@@ -13,19 +13,24 @@
 /// or otherwise) arising in any way out of the use of this software, 
 /// even if advised of the possibility of such damage.
 ///
-///   File: text_encoder.cpp
+///   File: main.cpp
 ///
 /// Author: $author$
-///   Date: 7/27/2016
+///   Date: 8/3/2016
 ///////////////////////////////////////////////////////////////////////
-#include "xene/xml/text_encoder.hpp"
+#include "xene/app/cgi/xene/main.hpp"
 
 namespace xene {
-namespace xml {
+namespace app {
+namespace cgi {
+namespace xene {
 
 ///////////////////////////////////////////////////////////////////////
-///  Class: text_encodert
+///  Class: maint
 ///////////////////////////////////////////////////////////////////////
+static main the_main;
 
-} // namespace xml 
+} // namespace xene 
+} // namespace cgi 
+} // namespace app 
 } // namespace xene 
