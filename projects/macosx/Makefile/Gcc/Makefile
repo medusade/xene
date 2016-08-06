@@ -13,28 +13,27 @@
 # or otherwise) arising in any way out of the use of this software,
 # even if advised of the possibility of such damage.
 #
-#   File: xene.pri
+#   File: Makefile
 #
 # Author: $author$
-#   Date: 7/26/2016
+#   Date: 8/2/2016
+#
+# MacOSX Gcc Makefile for xene
 ########################################################################
+PKG = ../../../..
 
-XENE_OS = macosx
+PRJ = projects/macosx/Makefile/Gcc
+SRC = src
 
-########################################################################
-# nadir
-NADIR_BLD = ../$${NADIR_PKG}/build/$${XENE_OS}/QtCreator/$${XENE_CONFIG}
-NADIR_LIB = $${NADIR_BLD}/lib
+include $(PKG)/$(PRJ)/Makedefines
 
-########################################################################
-# xene
-xene_INCLUDEPATH += \
+#
+# Source subdirs
+#
+#SRC_DIRS = \
+#$(PKG)/$(PRJ)/somedir \
+#
+SRC_DIRS = \
+$(PKG)/$(PRJ)/app \
 
-xene_DEFINES += \
-
-xene_LIBS += \
--L$${NADIR_LIB}/libxosnadir \
--lxosnadir \
--lpthread \
--ldl \
-
+include $(PKG)/$(PRJ)/Makedirs

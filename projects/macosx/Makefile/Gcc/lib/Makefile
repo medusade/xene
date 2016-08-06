@@ -1,5 +1,5 @@
 ########################################################################
-# Copyright (c) 1988-2016 $organization$
+# Copyright (c) 1988-2014 $organization$
 #
 # This software is provided by the author and contributors ``as is''
 # and any express or implied warranties, including, but not limited to,
@@ -13,28 +13,28 @@
 # or otherwise) arising in any way out of the use of this software,
 # even if advised of the possibility of such damage.
 #
-#   File: xene.pri
+#   File: Makefile
 #
 # Author: $author$
-#   Date: 7/26/2016
+#   Date: 5/23/2015
+#
+# MacOSX Gcc Makefile for texta libraries
 ########################################################################
+PKG = ../../../../..
 
-XENE_OS = macosx
+PRJ = projects/macosx/Makefile/Gcc
+SRC = src
 
-########################################################################
-# nadir
-NADIR_BLD = ../$${NADIR_PKG}/build/$${XENE_OS}/QtCreator/$${XENE_CONFIG}
-NADIR_LIB = $${NADIR_BLD}/lib
+include $(PKG)/$(PRJ)/Makedefines
 
-########################################################################
-# xene
-xene_INCLUDEPATH += \
+#
+# Source subdirs
+#
+#SRC_DIRS = \
+#$(PKG)/$(PRJ)/somedir \
+#
+SRC_DIRS = \
+$(PKG)/$(PRJ)/lib/libtexta \
 
-xene_DEFINES += \
-
-xene_LIBS += \
--L$${NADIR_LIB}/libxosnadir \
--lxosnadir \
--lpthread \
--ldl \
+include $(PKG)/$(PRJ)/Makedirs
 

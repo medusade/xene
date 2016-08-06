@@ -13,15 +13,15 @@
 # or otherwise) arising in any way out of the use of this software,
 # even if advised of the possibility of such damage.
 #
-#   File: xene.pri
+#   File: xene_cgi.pri
 #
 # Author: $author$
-#   Date: 7/26/2016
+#   Date: 8/3/2016
 ########################################################################
 
 ########################################################################
 # xene
-xene_HEADERS += \
+xene_cgi_HEADERS += \
 $${XENE_SRC}/xene/xml/libxml2/libxslt/processor.hpp \
 $${XENE_SRC}/xene/xml/libxml2/libxslt/parameters.hpp \
 $${XENE_SRC}/xene/xml/libxml2/libxslt/parameter.hpp \
@@ -32,12 +32,14 @@ $${XENE_SRC}/xene/xml/xslt/stylesheet.hpp \
 $${XENE_SRC}/xene/xml/xslt/document.hpp \
 $${XENE_SRC}/xene/xml/xslt/parameters.hpp \
 $${XENE_SRC}/xene/xml/xslt/parameter.hpp \
+$${XENE_SRC}/xene/xml/attribute_encoder.hpp \
+$${XENE_SRC}/xene/xml/text_encoder.hpp \
 $${XENE_SRC}/xene/xml/character_writer.hpp \
 $${XENE_SRC}/xene/xml/character_reader.hpp \
 $${XENE_SRC}/xene/xml/character_string.hpp \
 $${XENE_SRC}/xene/xml/character.hpp \
 
-xene_SOURCES += \
+xene_cgi_SOURCES += \
 $${XENE_SRC}/xene/xml/libxml2/libxslt/processor.cpp \
 $${XENE_SRC}/xene/xml/libxml2/libxslt/parameters.cpp \
 $${XENE_SRC}/xene/xml/libxml2/libxslt/parameter.cpp \
@@ -45,42 +47,54 @@ $${XENE_SRC}/xene/xml/xslt/extension_module.cpp \
 $${XENE_SRC}/xene/xml/xslt/extension_function.cpp \
 $${XENE_SRC}/xene/xml/xslt/stylesheet.cpp \
 $${XENE_SRC}/xene/xml/xslt/document.cpp \
+$${XENE_SRC}/xene/xml/attribute_encoder.cpp \
+$${XENE_SRC}/xene/xml/text_encoder.cpp \
 $${XENE_SRC}/xene/xml/character_writer.cpp \
 $${XENE_SRC}/xene/xml/character_reader.cpp \
 $${XENE_SRC}/xene/xml/character_string.cpp \
 $${XENE_SRC}/xene/xml/character.cpp \
 
-_xene_SOURCES += \
-$${XENE_SRC}/xene/xml/xslt/processor.cpp \
-$${XENE_SRC}/xene/xml/xslt/parameters.cpp \
-$${XENE_SRC}/xene/xml/xslt/parameter.cpp \
-
 ########################################################################
 # xene
-xene_HEADERS += \
-$${XENE_SRC}/xene/app/console/xene/main.hpp \
-$${XENE_SRC}/xene/console/main.hpp \
-$${XENE_SRC}/xene/console/main_opt.hpp \
-$${XENE_SRC}/xene/console/main_main.hpp \
-
-xene_SOURCES += \
-$${XENE_SRC}/xene/app/console/xene/main.cpp \
-$${XENE_SRC}/xene/console/main_opt.cpp \
-$${XENE_SRC}/xene/console/main_main.cpp \
-
-_xene_SOURCES += \
-
-########################################################################
-# xene
-xene_HEADERS += \
+xene_cgi_HEADERS += \
+$${XENE_SRC}/xene/fs/path.hpp \
 $${XENE_SRC}/xene/io/logger.hpp \
 $${XENE_SRC}/xene/io/writer.hpp \
 $${XENE_SRC}/xene/io/reader.hpp \
 $${XENE_SRC}/xene/base/base.hpp \
 
-xene_SOURCES += \
+xene_cgi_SOURCES += \
+$${XENE_SRC}/xene/fs/path.cpp \
 $${XENE_SRC}/xene/io/logger.cpp \
 $${XENE_SRC}/xene/io/writer.cpp \
 $${XENE_SRC}/xene/io/reader.cpp \
 $${XENE_SRC}/xene/base/base.cpp \
+
+########################################################################
+# xene_cgi
+xene_cgi_HEADERS += \
+$${XENE_SRC}/xene/app/cgi/xene/main.hpp \
+$${XENE_SRC}/xene/app/xene/main.hpp \
+$${XENE_SRC}/xene/inet/cgi/main.hpp \
+
+xene_cgi_SOURCES += \
+$${XENE_SRC}/xene/app/cgi/xene/main.cpp \
+
+########################################################################
+# coral
+xene_cgi_HEADERS += \
+$${CORAL_SRC}/coral/app/cgi/main.hpp \
+$${CORAL_SRC}/coral/inet/cgi/main.hpp \
+$${CORAL_SRC}/coral/console/main.hpp \
+$${CORAL_SRC}/coral/console/main_main.hpp \
+
+xene_cgi_SOURCES += \
+$${CORAL_SRC}/coral/console/main_main.cpp \
+
+########################################################################
+# nadir
+xene_cgi_HEADERS += \
+$${NADIR_SRC}/xos/io/string/writer.hpp \
+
+xene_cgi_SOURCES += \
 

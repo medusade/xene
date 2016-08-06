@@ -13,28 +13,35 @@
 # or otherwise) arising in any way out of the use of this software,
 # even if advised of the possibility of such damage.
 #
-#   File: xene.pri
+#   File: xene_cgi.pro
 #
 # Author: $author$
-#   Date: 7/26/2016
+#   Date: 8/3/2016
 ########################################################################
+include(../../../../../build/QtCreator/libxslt.pri)
+include(../../libxslt.pri)
+include(../../../../QtCreator/xene.pri)
+include(../../xene.pri)
+include(../../../../QtCreator/app/xene_cgi/xene_cgi.pri)
 
-XENE_OS = macosx
+TARGET = xene-cgi
+
+INCLUDEPATH += \
+$${xene_INCLUDEPATH} \
+$${libxslt_INCLUDEPATH} \
+
+DEFINES += \
+$${xene_DEFINES} \
 
 ########################################################################
-# nadir
-NADIR_BLD = ../$${NADIR_PKG}/build/$${XENE_OS}/QtCreator/$${XENE_CONFIG}
-NADIR_LIB = $${NADIR_BLD}/lib
+HEADERS += \
+$${xene_cgi_HEADERS} \
+
+SOURCES += \
+$${xene_cgi_SOURCES} \
 
 ########################################################################
-# xene
-xene_INCLUDEPATH += \
-
-xene_DEFINES += \
-
-xene_LIBS += \
--L$${NADIR_LIB}/libxosnadir \
--lxosnadir \
--lpthread \
--ldl \
+LIBS += \
+$${xene_LIBS} \
+$${libxslt_LIBS} \
 
