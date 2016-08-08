@@ -18,7 +18,7 @@
 # Author: $author$
 #   Date: 8/7/2016
 #
-# MacOSX Gcc Makefile for xene libxene Static Library
+# MacOSX Gcc Makefile for xene xene_cgi Executable
 ########################################################################
 PKG = ../../../../../..
 
@@ -29,12 +29,12 @@ SRC = src
 include $(PKG)/$(MAK)/Makedefines
 include $(PKG)/$(PRJ)/Makedefines
 include $(PKG)/$(MAK)/Makefile
-include $(PKG)/$(MAK)/lib/libxene/Makefile
+include $(PKG)/$(MAK)/app/xene_cgi/Makefile
 
 #
 # target
 #
-LIBTARGET = libxene.$(LIBEXT)
+EXETARGET = xene-cgi
 
 ########################################################################
 
@@ -42,19 +42,19 @@ LIBTARGET = libxene.$(LIBEXT)
 # user defines
 #
 USRDEFINES = \
-${libxene_USRDEFINES}
+${xene_cgi_USRDEFINES} \
 
 #
 # user includes
 #
 USRINCLUDES = \
-${libxene_USRINCLUDES}
+${xene_cgi_USRINCLUDES} \
 
 #
 # user libdirs
 #
 USRLIBDIRS = \
-${libxene_USRLIBDIRS}
+${xene_cgi_USRLIBDIRS} \
 
 ########################################################################
 
@@ -62,76 +62,89 @@ ${libxene_USRLIBDIRS}
 # user c++ flags
 #
 USRCXXFLAGS = \
-${libxene_USRCXXFLAGS}
+${xene_cgi_USRCXXFLAGS} \
 
 #
 # user c flags
 #
 USRCFLAGS = \
+${xene_cgi_USRCFLAGS} \
 
 #
 # user ld flags
 #
 USRLDFLAGS = \
+${xene_cgi_USRLDFLAGS} \
 
 ########################################################################
 
 #
-# Static Library C sources
+# Executable C sources
 #
-LIB_C_SOURCES = \
-${libxene_LIB_C_SOURCES}
+EXE_C_SOURCES = \
+${xene_cgi_EXE_C_SOURCES} \
 
 #
-# Static Library C++ .cc sources
+# Executable C++ .cc sources
 #
-LIB_CC_SOURCES = \
-${libxene_LIB_CC_SOURCES}
+EXE_CC_SOURCES = \
+${xene_cgi_EXE_CC_SOURCES} \
 
 #
-# Static Library C++ .cxx sources
+# Executable C++ .cxx sources
 #
-LIB_CXX_SOURCES = \
-${libxene_LIB_CXX_SOURCES}
+EXE_CXX_SOURCES = \
+${xene_cgi_EXE_CXX_SOURCES} \
 
 #
-# Static Library C++ .cpp sources
+# Executable C++ .cpp sources
 #
-LIB_CPP_SOURCES = \
-${libxene_LIB_CPP_SOURCES}
+EXE_CPP_SOURCES = \
+${xene_cgi_EXE_CPP_SOURCES} \
 
 #
-# Static Library Objective C .m sources
+# Executable Objective C .m sources
 #
-LIB_M_SOURCES = \
+EXE_M_SOURCES = \
+${xene_cgi_EXE_M_SOURCES} \
 
 #
-# Static Library Objective C++ .mm sources
+# Executable Objective C++ .mm sources
 #
-LIB_MM_SOURCES = \
+EXE_MM_SOURCES = \
+${xene_cgi_EXE_MM_SOURCES} \
 
 ########################################################################
 
 #
-# Static Library depends
+# Executable libs
 #
-#LIBDEP = \
+#LIBS = \
+#-lsomelib
+#
+LIBS = \
+${xene_cgi_LIBS} \
+
+#
+# Executable depends
+#
+#EXEDEP = \
 #$(PKG)/$(BLD)/libsomelib \
 #
-LIBDEP = \
+EXEDEP = \
 
 #
-# Static Library depend dirs
+# Executable depend dirs
 #
-#LIBDEP_DIRS = \
+#EXEDEP_DIRS = \
 #../libsomelib
 #
-LIBDEP_DIRS = \
+EXEDEP_DIRS = \
 
 include $(PKG)/$(PRJ)/Makerules
 
 #
-# Static Library depend rules
+# Executable depend rules
 #
 #$(PKG)/$(BLD)/libsomelib.a:
 #	@(echo Building libsomelib.a ...;\

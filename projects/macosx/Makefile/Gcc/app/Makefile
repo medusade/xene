@@ -35,6 +35,7 @@ include $(PKG)/$(PRJ)/Makedefines
 #
 SRC_DIRS = \
 $(PKG)/$(PRJ)/app/xene \
+$(PKG)/$(PRJ)/app/xene_cgi \
 
 include $(PKG)/$(PRJ)/Makedirs
 

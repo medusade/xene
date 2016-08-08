@@ -34,6 +34,7 @@ include $(PKG)/$(PRJ)/Makedefines
 #$(PKG)/$(PRJ)/somedir \
 #
 SRC_DIRS = \
+$(PKG)/$(PRJ)/lib \
 $(PKG)/$(PRJ)/app \
 
 include $(PKG)/$(PRJ)/Makedirs

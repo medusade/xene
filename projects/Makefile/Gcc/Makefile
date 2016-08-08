@@ -73,19 +73,14 @@ xene_USRDEFINES += \
 
 xene_USRINCLUDES += \
 -I${XENE_SRC} \
--I${MEDUSA_SRC} \
--I${CORAL_SRC} \
 -I${NADIR_SRC} \
-${libxslt_USRINCLUDES} \
 
 xene_USRCXXFLAGS += \
 -std=c++0x
 
 xene_USRLIBDIRS += \
 -L${NADIR_LIB} \
-${libxslt_USRLIBDIRS} \
 
 xene_LIBS += \
 -lxosnadir \
-${libxslt_LIBS} \
 
