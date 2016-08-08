@@ -63,6 +63,14 @@
     CORAL_INET_HTTP_MESSAGE_HEADER_NAME_CONTENT_TYPE, \
     "content_type",
 
+#define XENE_APP_CGI_XENE_PARAM_DEBUG_NAMES \
+    "debug",
+
+#define XENE_APP_CGI_XENE_PARAM_DEBUG_TRUE_NAMES \
+    "on", \
+    "yes", \
+    "true",
+
 namespace xene {
 namespace app {
 namespace cgi {
@@ -125,6 +133,10 @@ protected:
             document_file_.assign(chars, length);
         }
 
+        if ((chars = param_debug(length))) {
+            debug_ = param_debug_true(chars, length);
+        }
+
         if ((template_file_.length())
             && (!template_file_.compare(document_file_))) {
             fs::path template_path(template_file_.chars());
@@ -170,45 +182,61 @@ protected:
             if ((chars = document_file_.has_chars())) {
                 const char *xml_name_chars = chars;
 
-                if ((debug_)) {
-                    this->outl
-                    (H1_, cgi_name_.chars(), _H1,
-                     B_, "template source = \"", _B, template_file_.chars(), B_, "\"", _B, BR,
-                     B_, "document source = \"", _B, document_file_.chars(), B_, "\"", _B, BR,
-                     NULL_POINTER);
+                if (xml_name_chars != (chars = absolute_file_name_chars
+                     (length, absolute_document_file_, xml_name_chars, xslt_name_chars))) {
+                    xml_name_chars = chars;
                 } else {
-                    xml::xslt::processor* xslt = 0;
-
-                    if ((xslt = xml::xslt::processor::get_processor())) {
-
+                    if (xslt_name_chars != (chars = absolute_file_name_chars
+                         (length, absolute_template_file_, xslt_name_chars, xml_name_chars))) {
+                        xslt_name_chars = chars;
+                    } else {
+                    }
+                }
+                if ((xslt_name_chars) && (xml_name_chars)) {
+                    if ((debug_)) {
                         if ((chars = content_type_.has_chars())) {
                             this->set_content_type(chars);
                         }
+                        this->outl
+                        (H1_, cgi_name_.chars(), _H1,
+                         B_, "template source = \"", _B, xslt_name_chars, B_, "\"", _B, BR,
+                         B_, "document source = \"", _B, xml_name_chars, B_, "\"", _B, BR,
+                         NULL_POINTER);
+                    } else {
+                        xml::xslt::processor* xslt = 0;
 
-                        if ((xslt->init())) {
-                            xml::char_text_encoder errors_encoder
-                            (errors_writer, (this->is_content_type_text()));
-                            xml::character_to_char_writer errors(errors_encoder),
-                                                          result(result_writer);
-                            xml::character_string xslt_name(xslt_name_chars),
-                                                  xml_name(xml_name_chars);
+                        if ((xslt = xml::xslt::processor::get_processor())) {
 
-                            set_parameters(*xslt);
-                            errors_.clear();
-
-                            if (!(xslt->process_files(errors, result, xslt_name, xml_name))) {
-                                this->outl
-                                ("...failed on xslt->process_files", BR,
-                                 "(errors = \"", BR, errors_.chars(), "\"..., ", BR,
-                                 "xslt_name = \"", xslt_name_chars, "\", ", BR,
-                                 "xml_name = \"", xml_name_chars, "\")", BR, NULL_POINTER);
+                            if ((chars = content_type_.has_chars())) {
+                                this->set_content_type(chars);
                             }
-                            xslt->fini();
+
+                            if ((xslt->init())) {
+                                xml::char_text_encoder errors_encoder
+                                (errors_writer, (this->is_content_type_text()));
+                                xml::character_to_char_writer errors(errors_encoder),
+                                                              result(result_writer);
+                                xml::character_string xslt_name(xslt_name_chars),
+                                                      xml_name(xml_name_chars);
+
+                                set_parameters(*xslt);
+                                errors_.clear();
+
+                                if (!(xslt->process_files(errors, result, xslt_name, xml_name))) {
+                                    this->outl
+                                    ("...failed on xslt->process_files", BR,
+                                     "(errors = \"", BR, errors_.chars(), "\"..., ", BR,
+                                     "xslt_name = \"", xslt_name_chars, "\", ", BR,
+                                     "xml_name = \"", xml_name_chars, "\")", BR, NULL_POINTER);
+                                }
+                                xslt->fini();
+                            } else {
+                            }
+                            xml::xslt::processor::free_processor(xslt);
                         } else {
                         }
-                        xml::xslt::processor::free_processor(xslt);
-                    } else {
                     }
+                } else {
                 }
             } else {
                 this->outl
@@ -334,6 +362,75 @@ protected:
 
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
+    virtual const char *absolute_file_name_chars
+    (size_t &length, string &file_name,
+     const char *file_name_chars, const char *absolute_file_name_chars) {
+        const char* chars = 0;
+
+        if ((chars = file_name_chars)) {
+            const char* absolute_path_chars = 0;
+            size_t absolute_path_length = 0;
+            char separator_char = 0;
+
+            if (!(absolute_path_chars = absolute_file_name_path_chars
+                (absolute_path_length, separator_char, file_name_chars))) {
+
+                if ((absolute_file_name_chars)) {
+
+                    if ((absolute_path_chars = absolute_file_name_path_chars
+                        (absolute_path_length, separator_char, absolute_file_name_chars))) {
+
+                        file_name.assign(absolute_path_chars, absolute_path_length);
+                        file_name.append(&separator_char, 1);
+                        file_name.append(file_name_chars);
+
+                        if ((absolute_path_chars = file_name.has_chars(absolute_path_length))) {
+                            chars = absolute_path_chars;
+                            length = absolute_path_length;
+                        }
+                    }
+                }
+            }
+        }
+        return chars;
+    }
+    virtual const char *absolute_file_name_path_chars
+    (size_t &length, char& separator_char, const char *absolute_file_name_chars) {
+        const char* chars = 0;
+
+        if ((absolute_file_name_chars)) {
+            if ((PLATFORM_EXTENSION_SEPARATOR_CHAR != absolute_file_name_chars[0])
+                && (FOREIGN_EXTENSION_SEPARATOR_CHAR != absolute_file_name_chars[0])) {
+                const char* relative_file_name_chars = 0;
+
+                if ((relative_file_name_chars = chars_t::find_reverse
+                    (absolute_file_name_chars, (char)PLATFORM_DIRECTORY_SEPARATOR_CHAR))) {
+                    separator_char = PLATFORM_DIRECTORY_SEPARATOR_CHAR;
+                } else {
+                    if ((relative_file_name_chars = chars_t::find_reverse
+                        (absolute_file_name_chars, (char)FOREIGN_DIRECTORY_SEPARATOR_CHAR))) {
+                        separator_char = FOREIGN_DIRECTORY_SEPARATOR_CHAR;
+                    } else {
+                        if ((PLATFORM_VOLUME_SEPARATOR_CHAR)) {
+                            if ((relative_file_name_chars = chars_t::find_reverse
+                                (absolute_file_name_chars, (char)PLATFORM_VOLUME_SEPARATOR_CHAR))) {
+                                separator_char = PLATFORM_VOLUME_SEPARATOR_CHAR;
+                            }
+                        }
+                    }
+                }
+                if ((relative_file_name_chars)) {
+                    if ((chars = absolute_file_name_chars)) {
+                        length = (relative_file_name_chars - absolute_file_name_chars);
+                    }
+                }
+            }
+        }
+        return chars;
+    }
+
+    ///////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////
     virtual const char* param_template_file
     (size_t& length, bool only_from_emplate_file_names = false) const {
         const char* chars = 0;
@@ -358,6 +455,25 @@ protected:
         const char* chars = 0;
         chars = this->form_value_has_chars(length, param_content_type_names());
         return chars;
+    }
+    virtual const char* param_debug(size_t& length) const {
+        const char* chars = 0;
+        chars = this->form_value_has_chars(length, param_debug_names());
+        return chars;
+    }
+    virtual bool param_debug_true(const char* chars, size_t length) const {
+        if ((chars) && (length)) {
+            const char** names = 0;
+            if ((names = param_debug_true_names())) {
+                const char *name = 0;
+                while ((name = (*names++))) {
+                    if (!(chars_t::compare(chars, name))) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 
     ///////////////////////////////////////////////////////////////////////
@@ -417,6 +533,20 @@ protected:
         };
         return names;
     }
+    virtual const char** param_debug_names() const {
+        static const char* names[] = {
+            XENE_APP_CGI_XENE_PARAM_DEBUG_NAMES
+            0
+        };
+        return names;
+    }
+    virtual const char** param_debug_true_names() const {
+        static const char* names[] = {
+            XENE_APP_CGI_XENE_PARAM_DEBUG_TRUE_NAMES
+            0
+        };
+        return names;
+    }
 
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
@@ -426,7 +556,9 @@ protected:
            cgi_parameter_name_, cgi_env_parameter_name_,
            template_parameter_name_, document_parameter_name_,
            template_file_extension_, document_file_extension_,
-           template_file_, document_file_, content_type_, errors_;
+           template_file_, document_file_,
+           absolute_template_file_, absolute_document_file_,
+           content_type_, errors_;
 };
 typedef maint<> main;
 
