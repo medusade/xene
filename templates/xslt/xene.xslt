@@ -102,23 +102,23 @@
 <!--========================================================================-->
 <xsl:template match="xene:xene">
 <pre>
-<xsl:text>name: </xsl:text>
+<b><xsl:text>name: </xsl:text></b>
 <xsl:value-of select="$cgi_name"/>
 <xsl:text>
 </xsl:text>
 <xsl:text>
 </xsl:text>
-<xsl:text>environment:</xsl:text>
+<b><xsl:text>environment:</xsl:text></b>
 <xsl:text>
 </xsl:text>
 <xsl:text>
 </xsl:text>
 <xsl:for-each select="$cgi_env_/variable">
-<xsl:value-of select="@name"/>
-<xsl:text> = "</xsl:text>
+<b><xsl:value-of select="@name"/>
+<xsl:text> = "</xsl:text></b>
 <xsl:value-of select="."/>
-<xsl:text>"
-</xsl:text>
+<b><xsl:text>"
+</xsl:text></b>
 </xsl:for-each>
 </pre>
 </xsl:template>
