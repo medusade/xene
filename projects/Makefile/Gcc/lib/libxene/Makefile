@@ -59,7 +59,7 @@ libxene_LIB_CXX_SOURCES = \
 # C++ .cpp sources
 #
 libxene_LIB_CPP_SOURCES += \
-${TEXTA_SRC}/xene/base/base.cpp \
+${XENE_SRC}/xene/base/base.cpp \
 
 #
 # libs

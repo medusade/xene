@@ -25,6 +25,7 @@
 # user defines
 #
 xene_USRDEFINES += \
+${libxslt_USRDEFINES} \
 
 #
 # user includes

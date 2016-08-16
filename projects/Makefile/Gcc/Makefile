@@ -32,6 +32,7 @@ libxslt_USRDEFINES += \
 
 libxslt_USRINCLUDES += \
 -I${HOME}/build/libxslt/include \
+-I${HOME}/build/libxml2/include \
 -I${HOME}/build/libxml2/include/libxml2 \
 
 libxslt_USRLIBDIRS += \

@@ -26,6 +26,7 @@
 #
 xene_cgi_USRDEFINES += \
 ${xene_USRDEFINES} \
+${libxslt_USRDEFINES} \
 
 #
 # user includes
