@@ -98,25 +98,36 @@
 %cxxx_comments,%(%else-then(%cxxx_comments%,%(%equal(cxxx,%comment_type%)%)%)%)%,%
 %cppp_comments,%(%else-then(%cppp_comments%,%(%equal(cppp,%comment_type%)%)%)%)%,%
 %cpp_comments,%(%else-then(%equal(hpp,%file_type%)%,%(%equal(cpp,%file_type%)%)%)%)%,%
-%left_comment,%(%else(%cpp_comments%,%(/*)%,%(//)%)%)%,%
-%right_comment,%(%else(%cpp_comments%,%(*/)%,%()%)%)%,%
-%first_comment,%(%%indent%%%else(%cpp_comments%,%(/*)%,%(//)%)%)%,%
-%last_comment,%(%%indent%%%else(%cpp_comments%,%( */)%,%(//)%)%)%,%
-%middle_comment,%(%%indent%%%else(%cpp_comments%,%( *)%,%(//)%)%)%,%
-%separator,%(%else(%cpp_comments%,%
+%left_defined_comment,%(%else-then(%left_defined_comment%,%()%)%)%,%
+%right_defined_comment,%(%else-then(%right_defined_comment%,%()%)%)%,%
+%first_defined_comment,%(%else-then(%first_defined_comment%,%()%)%)%,%
+%last_defined_comment,%(%else-then(%last_defined_comment%,%()%)%)%,%
+%middle_defined_comment,%(%else-then(%middle_defined_comment%,%()%)%)%,%
+%default_separator,%(%else-then(%default_separator%,%()%)%)%,%
+%begin_default_separator,%(%else-then(%begin_default_separator%,%()%)%)%,%
+%end_default_separator,%(%else-then(%end_default_separator%,%()%)%)%,%
+%left_default_separator,%(%else-then(%left_default_separator%,%()%)%)%,%
+%left_comment,%(%else-then(%left_defined_comment%,%(%else(%cpp_comments%,%(/*)%,%(//)%)%)%)%)%,%
+%right_comment,%(%else-then(%right_defined_comment%,%(%else(%cpp_comments%,%(*/)%,%()%)%)%)%)%,%
+%first_comment,%(%%indent%%%else-then(%first_defined_comment%,%(%else(%cpp_comments%,%(/*)%,%(//)%)%)%)%)%,%
+%last_comment,%(%%indent%%%else-then(%last_defined_comment%,%(%else(%cpp_comments%,%( */)%,%(//)%)%)%)%)%,%
+%middle_comment,%(%%indent%%%else-then(%middle_defined_comment%,%(%else(%cpp_comments%,%( *)%,%(//)%)%)%)%)%,%
+%separator,%(%else-then(%default_separator%,%(%else(%cpp_comments%,%
 %%( **********************************************************************)%,%
-%%(///////////////////////////////////////////////////////////////////////)%)%)%,%
-%begin_separator,%(%%indent%%%cc_%%else(%cpp_comments%,%(%else(%cxx_comments%,%(/**)%,%(/*)%)%
+%%(///////////////////////////////////////////////////////////////////////)%)%)%)%)%,%
+%begin_separator,%(%%indent%%%cc_%%else-then(%begin_default_separator%,%(%else(%cpp_comments%,%(%else(%cxx_comments%,%(/**)%,%(/*)%)%
 %%indent%%)%,%()%)%%separator%
+)%)%)%,%
+%end_separator,%(%%indent%%%else-then(%end_default_separator%,%(%separator%%else(%cpp_comments%,%(
+%%indent%% */)%,%()%)%)%)%%_cc%
 )%,%
-%end_separator,%(%%indent%%%separator%%else(%cpp_comments%,%(
-%%indent%% */)%,%()%)%%_cc%
-)%,%
-%left_separator,%(%%indent%%%else(%cpp_comments%,%( *)%,%(%else(%cppp_comments%,%(//)%,%(///)%)%)%)%)%,%
+%left_separator,%(%%indent%%%else-then(%left_default_separator%,%(%else(%cpp_comments%,%( *)%,%(%else(%cppp_comments%,%(//)%,%(///)%)%)%)%)%)%)%,%
 %namespace,%(%else-then(%namespace%,%()%)%)%,%
+%no_namespace,%(%else-then(%no_namespace%,%(%equal(void,%namespace%)%)%)%)%,%
 %Namespace,%(%else-then(%Namespace%,%(%namespace%)%)%)%,%
+%Namespace,%(%else(%no_namespace%,%(%Namespace%)%)%)%,%
 %NAMESPACE,%(%else-then(%NAMESPACE%,%(%toupper(%Namespace%)%)%)%)%,%
-%namespace,%(%else-then(%_Namespace%,%(%tolower(%Namespace%)%)%)%)%,%
+%namespace,%(%else-then(%_Namespace%,%(%tolower(%Namespace%)%)%)%)%,%%no_namespace,%(%equal(%namespace%,void)%)%,%
 %is_kr_indent,%(%if(%equal(kr,%code_style%)%,%(yes)%)%)%,%
 %comment_fields,%(%else(%is_comment_fields%,%(yes)%,%(%comment_fields_author%%comment_fields_date%)%)%)%,%
 %comment_fields_copyright,%(%else-then(%comment_fields_copyright%,%(%else(%is_comment_fields%,%(yes)%)%)%)%)%,%
@@ -138,7 +149,9 @@
 %class_namespace_define,%(%else-then(%_Class_namespace_define%,%(%tolower(%Class_namespace_define%)%)%)%)%,%
 %Parsed_class_namespace,%(%parse(%class_namespace%,/,,;)%)%,%
 %class_namespace,%(%else-then(%Parsed_class_namespace%,%(%else-then(%class_namespace%,%(%Namespace%)%)%)%)%)%,%
+%no_class_namespace,%(%else-then(%no_class_namespace%,%(%equal(void,%class_namespace%)%)%)%)%,%
 %Class_namespace,%(%else-then(%Class_namespace%,%(%class_namespace%)%)%)%,%
+%Class_namespace,%(%else(%no_class_namespace%,%(%Class_namespace%)%)%)%,%
 %CLASS_NAMESPACE,%(%else-then(%CLASS_NAMESPACE%,%(%toupper(%Class_namespace%)%)%)%)%,%
 %class_namespace,%(%else-then(%_Class_namespace%,%(%tolower(%Class_namespace%)%)%)%)%,%
 %class_pattern_tc,%(%else-then(%class_pattern_tc%,%(%equal(tc,%class_pattern%)%)%)%)%,%

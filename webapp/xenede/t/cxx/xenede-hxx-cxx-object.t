@@ -51,7 +51,8 @@
 %)%,%(%
 %%else(%file_c%,%(%
 %
-%else(%Class_namespace%,%(%
+%else(%no_class_namespace%,%(%
+%%else(%Class_namespace%,%(%
 %%kk_%#if%_kk% %class_namespace_ifdef%
 %kk_%namespace%_kk% %Class_namespace_define% {
 %kk_%#endif%_kk% %class_namespace_ifdef_cc%%
@@ -60,6 +61,7 @@
 %%kk_%namespace%_kk% %Class_namespace% {
 %
 %)%,Class_namespace)%%
+%)%)%%
 %)%)%
 
 %
@@ -116,7 +118,8 @@
 %%else(%file_c%,%(%
 %
 
-%else(%Class_namespace%,%(%
+%else(%no_class_namespace%,%(%
+%%else(%Class_namespace%,%(%
 %%kk_%#if%_kk% %class_namespace_ifdef%
 }
 %kk_%#endif%_kk% %class_namespace_ifdef_cc%%
@@ -125,6 +128,7 @@
 %} %cc_%%left_comment% namespace %Class_namespace% %right_comment%%_cc%
 %
 %)%,Class_namespace)%%
+%)%)%%
 %)%)%
 
 %

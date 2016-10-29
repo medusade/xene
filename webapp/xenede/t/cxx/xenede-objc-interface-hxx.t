@@ -42,7 +42,7 @@
 %%if(%Class_init%,%(%
 %%with(%
 %class_function_comment,%(%class_init_comment%)%,%
-%Class_function_parameters,%(%class_init_parameters%)%,%
+%Class_function_parameters,%(%Class_init_parameters%)%,%
 %Class_function_body,%(%class_init_body%)%,%
 %f_name,%(init)%,%
 %f_type,%(%if-then(%pp_%%if(%equal(class,%Class_init%)%,%(+)%,%(-)%)%%_pp%,%( )%)%)%,%
