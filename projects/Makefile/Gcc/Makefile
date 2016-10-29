@@ -38,11 +38,13 @@ libxslt_USRINCLUDES += \
 libxslt_USRLIBDIRS += \
 -L${HOME}/build/libxslt/lib \
 -L${HOME}/build/libxml2/lib \
+-L${HOME}/build/zlib/lib \
 
 libxslt_LIBS += \
 -lxslt \
 -lexslt \
 -lxml2 \
+-lz \
 
 ########################################################################
 # nadir
