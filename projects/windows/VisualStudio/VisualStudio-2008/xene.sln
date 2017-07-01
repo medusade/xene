@@ -1,0 +1,53 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Property Sheets", "Property Sheets", "{C38F30F3-70E2-4B4C-B6AF-E1CAF5DC091A}"
+	ProjectSection(SolutionItems) = preProject
+		..\coral.vsprops = ..\coral.vsprops
+		..\libxml2.vsprops = ..\libxml2.vsprops
+		..\libxslt.vsprops = ..\libxslt.vsprops
+		..\medusa.vsprops = ..\medusa.vsprops
+		..\nadir.vsprops = ..\nadir.vsprops
+		xene-vcversion.vsprops = xene-vcversion.vsprops
+		..\xene.vsprops = ..\xene.vsprops
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "app", "app", "{8111499E-731F-4095-84BE-6D3CFBB7426C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "lib", "lib", "{C417FF50-F18E-4317-B3E6-E5FFB71B3D78}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libxene", "libxene\libxene.vcproj", "{1FC861F1-B23E-48A5-A8AB-FB00F2106B51}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "xene", "xene\xene.vcproj", "{7FA62B3A-1A3E-4598-8CDE-1F790932938D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Debug|x64 = Debug|x64
+		Release|Win32 = Release|Win32
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1FC861F1-B23E-48A5-A8AB-FB00F2106B51}.Debug|Win32.ActiveCfg = Debug|Win32
+		{1FC861F1-B23E-48A5-A8AB-FB00F2106B51}.Debug|Win32.Build.0 = Debug|Win32
+		{1FC861F1-B23E-48A5-A8AB-FB00F2106B51}.Debug|x64.ActiveCfg = Debug|x64
+		{1FC861F1-B23E-48A5-A8AB-FB00F2106B51}.Debug|x64.Build.0 = Debug|x64
+		{1FC861F1-B23E-48A5-A8AB-FB00F2106B51}.Release|Win32.ActiveCfg = Release|Win32
+		{1FC861F1-B23E-48A5-A8AB-FB00F2106B51}.Release|Win32.Build.0 = Release|Win32
+		{1FC861F1-B23E-48A5-A8AB-FB00F2106B51}.Release|x64.ActiveCfg = Release|x64
+		{1FC861F1-B23E-48A5-A8AB-FB00F2106B51}.Release|x64.Build.0 = Release|x64
+		{7FA62B3A-1A3E-4598-8CDE-1F790932938D}.Debug|Win32.ActiveCfg = Debug|Win32
+		{7FA62B3A-1A3E-4598-8CDE-1F790932938D}.Debug|Win32.Build.0 = Debug|Win32
+		{7FA62B3A-1A3E-4598-8CDE-1F790932938D}.Debug|x64.ActiveCfg = Debug|Win32
+		{7FA62B3A-1A3E-4598-8CDE-1F790932938D}.Release|Win32.ActiveCfg = Release|Win32
+		{7FA62B3A-1A3E-4598-8CDE-1F790932938D}.Release|Win32.Build.0 = Release|Win32
+		{7FA62B3A-1A3E-4598-8CDE-1F790932938D}.Release|x64.ActiveCfg = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{7FA62B3A-1A3E-4598-8CDE-1F790932938D} = {8111499E-731F-4095-84BE-6D3CFBB7426C}
+		{1FC861F1-B23E-48A5-A8AB-FB00F2106B51} = {C417FF50-F18E-4317-B3E6-E5FFB71B3D78}
+	EndGlobalSection
+EndGlobal

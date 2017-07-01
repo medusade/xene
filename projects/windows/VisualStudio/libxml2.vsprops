@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<!--========================================================================-->
+<!-- Copyright (c) 1988-2016 $organization$                                 -->
+<!--                                                                        -->
+<!-- This software is provided by the author and contributors ``as is''     -->
+<!-- and any express or implied warranties, including, but not limited to,  -->
+<!-- the implied warranties of merchantability and fitness for a particular -->
+<!-- purpose are disclaimed. In no event shall the author or contributors   -->
+<!-- be liable for any direct, indirect, incidental, special, exemplary,    -->
+<!-- or consequential damages (including, but not limited to, procurement   -->
+<!-- of substitute goods or services; loss of use, data, or profits; or     -->
+<!-- business interruption) however caused and on any theory of liability,  -->
+<!-- whether in contract, strict liability, or tort (including negligence   -->
+<!-- or otherwise) arising in any way out of the use of this software,      -->
+<!-- even if advised of the possibility of such damage.                     -->
+<!--                                                                        -->
+<!--   File: libxml2.vsprops                                                  -->
+<!--                                                                        -->
+<!-- Author: $author$                                                       -->
+<!--   Date: 10/30/2016                                                      -->
+<!--========================================================================-->
+<VisualStudioPropertySheet
+    ProjectType="Visual C++"
+    Version="8.00"
+    Name="libxml2">
+
+  <!--===============================================-->
+
+  <UserMacro
+      Name="LIBXML2_GROUP"
+      Value="thirdparty/libxml2/"
+    />
+  <UserMacro
+      Name="LIBXML2_NAME"
+      Value="libxml2"
+    />
+  <UserMacro
+      Name="LIBXML2_VERSION"
+      Value="-2.7.8"
+    />
+
+  <!--===============================================-->
+
+  <UserMacro
+        Name="LIBXML2_DIR"
+        Value="$(LIBXML2_GROUP)$(LIBXML2_NAME)$(LIBXML2_VERSION)"
+    />
+  <UserMacro
+      Name="LIBXML2_SOURCE_DIR"
+      Value="$(SOURCE_ROOT_DIR)/$(LIBXML2_DIR)"
+    />
+  <UserMacro
+      Name="LIBXML2_BUILD_DIR"
+      Value="$(SOURCE_BUILD_DIR)/$(LIBXML2_DIR)/build"
+    />
+
+  <!--===============================================-->
+
+  <UserMacro
+      Name="LIBXML2_BUILD"
+      Value="$(LIBXML2_BUILD_DIR)/$(PlatformName)/$(VCVersion)/$(ConfigurationName)"
+    />
+  <UserMacro
+      Name="LIBXML2_OBJ"
+      Value="$(LIBXML2_BUILD)/obj/$(ProjectName)"
+    />
+  <UserMacro
+      Name="LIBXML2_LIB"
+      Value="$(LIBXML2_BUILD)/lib"
+    />
+  <UserMacro
+      Name="LIBXML2_BIN"
+      Value="$(LIBXML2_BUILD)/bin"
+    />
+
+  <!--===============================================-->
+
+  <UserMacro
+      Name="LIBXML2_DEFINES"
+      Value="HAVE_WIN32_THREADS"
+    />
+  <UserMacro
+      Name="LIBXML2_INCLUDE_DIRS"
+      Value="$(LIBXML2_SOURCE_DIR)/include/libxml2;$(LIBXML2_SOURCE_DIR)/include"
+    />
+  <UserMacro
+      Name="LIBXML2_LIB_DIRS"
+      Value="$(LIBXML2_LIB)"
+    />
+  <UserMacro
+      Name="LIBXML2_LIBS"
+      Value="libxml2.lib"
+    />
+
+  <!--===============================================-->
+
+</VisualStudioPropertySheet>
