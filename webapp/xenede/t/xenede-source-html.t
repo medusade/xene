@@ -20,12 +20,6 @@
 %#
 %#############################################################################
 %apply-x(%
-%date,%(%else-then(%file_date%,%(%else-then(%date%,%(%date()%)%)%)%)%)%,%
-%author,%(%else-then(%author%,%($organization$     )%)%)%,%
-%organization,%(%else-then(%organization%,%(%author%)%)%)%,%
-%fileprefix,%(%if-then(%else-then(%fileprefix%,%(xenede)%)%,%(-)%)%)%,%
-%filepath,%(%else-then(%filepath%,%(%filepath(%input%)%)%)%)%,%
-%includepath,%(%else-then(%includepath%,%(%filepath%)%)%)%,%
 %content_type,%(%else-then(%content_type%,%(text/plain)%)%)%,%
 %html_content_type,%(%else-then(%html_content_type%,%(%equal(text/html,%content_type%)%)%)%)%,%
 %eq,%(%if(%html_content_type%,%(=)%,%(=)%)%)%,%
@@ -51,6 +45,21 @@
 %_xx,%(%if(%html_content_type%,%(</font>)%)%)%,%
 %ii_,%(%if(%html_content_type%,%(<font class="include">)%)%)%,%
 %_ii,%(%if(%html_content_type%,%(</font>)%)%)%,%
+%fileprefix,%(%if-then(%else-then(%fileprefix%,%(xenede)%)%,%(-)%)%)%,%
+%filepath,%(%else-then(%filepath%,%(%filepath(%input%)%)%)%)%,%
+%includepath,%(%else-then(%includepath%,%(%filepath%)%)%)%,%
+%other_include,%(%else-then(%other_include%,%(%organization%)%)%)%,%
+%include_other,%(%else-then(%include_other%,%(%include(%includepath%/%other_include%-other.t)%)%)%)%,%
+%other,%(%else-then(%include_other%,%(%else-then(%other%,%()%)%)%)%)%,%
+%organization_include,%(%else-then(%organization_include%,%(%organization%)%)%)%,%
+%include_organization,%(%else-then(%include_organization%,%(%include(%includepath%/%organization_include%-organization.t)%)%)%)%,%
+%organization,%(%else-then(%include_organization%,%(%else-then(%organization%,%(%author%)%)%)%)%)%,%
+%author_include,%(%else-then(%author_include%,%(%organization_include%)%)%)%,%
+%include_author,%(%else-then(%include_author%,%(%include(%includepath%/%author_include%-author.t)%)%)%)%,%
+%author,%(%else-then(%include_author%,%(%else-then(%author%,%($organization$)%)%)%)%)%,%
+%date,%(%else-then(%file_date%,%(%else-then(%date%,%(%date()%)%)%)%)%)%,%
+%company,%(%else-then(%company%,%(%organization%)%)%)%,%
+%copyright_text_include,%(%else-then(%copyright_text_include%,%(%includepath%/%organization_include%-copyright.t)%)%)%,%
 %source_fileinclude,%(%source_includefile%)%,%
 %source_includefile,%()%,%
 %%(%

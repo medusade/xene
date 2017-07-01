@@ -80,6 +80,11 @@ ifeq ($(%WHAT%_COMPRESSED),bz2)
 %WHAT%_TAR_UNCOMPRESS = j
 %WHAT%_TAR_COMPRESS = j
 else
+ifeq ($(%WHAT%_COMPRESSED),xz)
+%WHAT%_TAR_UNCOMPRESS = J
+%WHAT%_TAR_COMPRESS = J
+else
+endif
 endif
 endif
 %WHAT%_LIST = tar -tv$(%WHAT%_TAR_UNCOMPRESS)f

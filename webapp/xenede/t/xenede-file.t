@@ -26,6 +26,9 @@
 %right_separator,%(%else-then(%right_separator%,%(
 )%)%)%,%
 %%(%
+%%else-then(%
+%%include(%organization_include_file_begin%)%%
+%,%(%
 %%if(%comments%,%(%
 %%do(%begin_separator%)%%
 %%if(%copyright%,%(%
@@ -53,5 +56,6 @@
 %%do(%left_separator%)%%padd( %for%, ,%separator_padd%)%%do(%right_separator%)%%
 %)%)%%
 %%do(%end_separator%)%%
+%)%)%%
 %)%)%%
 %)%)%

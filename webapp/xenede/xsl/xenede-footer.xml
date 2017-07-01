@@ -105,6 +105,23 @@
     <!-- footer-item                                                            -->
     <!--                                                                        -->
     <!--========================================================================-->
+    <footer-item id="for_other"
+     is_location_query_and="yes"
+     is_location_query_and_tab="no"
+     is_location_query_and_menu="no"
+     is_location_query_and_author="yes"
+     is_location_query_and_using="yes"
+     is_location_query_and_border="no"
+     location_query="for=other&amp;tab=create"
+     location="xenede.xsl">
+        <text>Other</text>
+    </footer-item>
+
+    <!--========================================================================-->
+    <!--                                                                        -->
+    <!-- footer-item                                                            -->
+    <!--                                                                        -->
+    <!--========================================================================-->
     <footer-item id="for_none"
      is_location_query_and="yes"
      is_location_query_and_tab="no"

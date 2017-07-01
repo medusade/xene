@@ -272,6 +272,7 @@
 <xsl:variable name="hxx_file_extensions_tree">
     <extension value="hxx">.hxx</extension>
     <extension value="hpp">.hpp</extension>
+    <extension value="chh">.chh</extension>
     <extension value="hh">.hh</extension>
     <extension value="h">.h</extension>
 </xsl:variable>
@@ -282,6 +283,7 @@
     <extension value="cxx">.cxx</extension>
     <extension value="cpp">.cpp</extension>
     <extension value="cc">.cc</extension>
+    <extension value="cmm">.cmm</extension>
     <extension value="mm">.mm</extension>
     <extension value="c">.c</extension>
     <extension value="m">.m</extension>
@@ -554,6 +556,26 @@
 </xsl:variable>
 <xsl:variable name="cxx_main_main_parameters_list"
  select="exsl:node-set($cxx_main_main_parameters_item)"/>
+
+<!--========================================================================-->
+
+<xsl:variable name="cxx_enum_comment_fields_tree">
+    <field name="enum" value="enum" default="yes">Enum:...</field>
+    <field name="author" value="author" default="yes">Author:...</field>
+    <field name="date" value="date" default="yes">Date:...</field>
+</xsl:variable>
+<xsl:variable name="cxx_enum_comment_fields"
+ select="exsl:node-set($cxx_enum_comment_fields_tree)"/>
+
+<!--========================================================================-->
+
+<xsl:variable name="cxx_typedef_comment_fields_tree">
+    <field name="typedef" value="typedef" default="yes">Typedef:...</field>
+    <field name="author" value="author" default="yes">Author:...</field>
+    <field name="date" value="date" default="yes">Date:...</field>
+</xsl:variable>
+<xsl:variable name="cxx_typedef_comment_fields"
+ select="exsl:node-set($cxx_typedef_comment_fields_tree)"/>
 
 <!--========================================================================-->
 <!-- Templates                                                              -->

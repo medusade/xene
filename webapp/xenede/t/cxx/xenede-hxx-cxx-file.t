@@ -22,6 +22,8 @@
 %file,%(%if(%equal(tolower,%file_is_case%)%,%(%file%)%,%(%File%)%)%)%,%
 %File,%(%if(%equal(tolower,%file_is_case%)%,%(%file%)%,%(%File%)%)%)%,%
 %File_base,%(%if(%equal(tolower,%file_is_case%)%,%(%file_base%)%,%(%File_base%)%)%)%,%
+%organization_include_file_begin,%(%else-then(%organization_include_file_begin%,%(%filepath%/%organization_include%-cxx-file-begin.t)%)%)%,%
+%organization_include_file_end,%(%else-then(%organization_include_file_end%,%(%filepath%/%organization_include%-cxx-file-end.t)%)%)%,%
 %%(%
 %%apply-x(%
 %filepath,%(%filepath%/..)%,%
@@ -84,4 +86,5 @@
 %%include(%filepath%/xenede-%if-then(%style%,%(-)%)%hxx-file-ifdef-end.t)%%
 %)%)%%
 %%
+%%include(%organization_include_file_end%)%%
 %)%)%

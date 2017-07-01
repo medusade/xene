@@ -58,7 +58,7 @@
 <xsl:variable name="compressed_types_tree">
 	<type default="yes">gz</type>
 	<type>bz2</type>
-	<type>z</type>
+	<type>xz</type>
 	<type value="">none</type>
 </xsl:variable>
 <xsl:variable name="compressed_types"

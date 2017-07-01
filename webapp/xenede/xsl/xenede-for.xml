@@ -26,9 +26,7 @@
  xmlns="Medusa-Xos-Development-Environment">
 
     <!--========================================================================-->
-    <!--                                                                        -->
     <!-- for-which                                                              -->
-    <!--                                                                        -->
     <!--========================================================================-->
     <for-which for="">
         <text></text>
@@ -43,9 +41,7 @@
     </for-which>
 
     <!--========================================================================-->
-    <!--                                                                        -->
     <!-- for-which                                                              -->
-    <!--                                                                        -->
     <!--========================================================================-->
     <for-which for="xenede"
      target="xenede"
@@ -62,13 +58,11 @@
     </for-which>
 
     <!--========================================================================-->
-    <!--                                                                        -->
     <!-- for-which                                                              -->
-    <!--                                                                        -->
     <!--========================================================================-->
     <for-which for="gnu"
      target="gnu"
-     href="/gnu/">
+     href="https://www.gnu.org">
         <text>Gnu</text>
         <author>$author$</author>
         <organization>Gnu</organization>
@@ -81,13 +75,11 @@
     </for-which>
 
     <!--========================================================================-->
-    <!--                                                                        -->
     <!-- for-which                                                              -->
-    <!--                                                                        -->
     <!--========================================================================-->
     <for-which for="google"
      target="google"
-     href="/google/">
+     href="https://www.google.com">
         <text>Google</text>
         <author>$author$</author>
         <organization>Google</organization>
@@ -100,14 +92,29 @@
     </for-which>
 
     <!--========================================================================-->
-    <!--                                                                        -->
     <!-- for-which                                                              -->
-    <!--                                                                        -->
+    <!--========================================================================-->
+    <for-which for="other"
+     target="other"
+     href="/other/">
+        <text>Other</text>
+        <author>$author$</author>
+        <organization>Other</organization>
+        <copyright>yes</copyright>
+        <open_source>yes</open_source>
+        <cxx_file_type>hpp</cxx_file_type>
+        <cxx_file_is_case>nocase</cxx_file_is_case>
+        <cxx_class_comment>yes</cxx_class_comment>
+        <cxx_function_comment>yes</cxx_function_comment>
+    </for-which>
+
+    <!--========================================================================-->
+    <!-- for-which                                                              -->
     <!--========================================================================-->
     <for-which for="html5demos"
      target="html5demos"
      href="/html5demos/">
-    <text>Html5Demos</text>
+        <text>Html5Demos</text>
 	<author>$author$</author>
 	<organization>Html5Demos</organization>
 	<copyright>yes</copyright>
@@ -119,9 +126,7 @@
     </for-which>
 
     <!--========================================================================-->
-    <!--                                                                        -->
     <!-- for-which                                                              -->
-    <!--                                                                        -->
     <!--========================================================================-->
     <for-which for="ssh"
      target="ssh"
@@ -138,9 +143,7 @@
     </for-which>
 
     <!--========================================================================-->
-    <!--                                                                        -->
     <!-- for-which                                                              -->
-    <!--                                                                        -->
     <!--========================================================================-->
     <for-which for="eay"
      target="eay"
@@ -157,9 +160,7 @@
     </for-which>
 
     <!--========================================================================-->
-    <!--                                                                        -->
     <!-- for-which                                                              -->
-    <!--                                                                        -->
     <!--========================================================================-->
     <for-which for="gmp"
      target="gmp"
@@ -176,9 +177,7 @@
     </for-which>
 
     <!--========================================================================-->
-    <!--                                                                        -->
     <!-- for-which                                                              -->
-    <!--                                                                        -->
     <!--========================================================================-->
     <for-which for="mongoose"
      target="mongoose"
@@ -195,9 +194,7 @@
     </for-which>
 
     <!--========================================================================-->
-    <!--                                                                        -->
     <!-- for-which                                                              -->
-    <!--                                                                        -->
     <!--========================================================================-->
     <for-which for="libwebsockets"
      target="libwebsockets"
@@ -214,9 +211,7 @@
     </for-which>
 
     <!--========================================================================-->
-    <!--                                                                        -->
     <!-- for-which                                                              -->
-    <!--                                                                        -->
     <!--========================================================================-->
     <for-which for="libraw"
      target="libraw"
@@ -230,6 +225,26 @@
     <cxx_file_is_case>nocase</cxx_file_is_case>
     <cxx_class_comment>no</cxx_class_comment>
     <cxx_function_comment>no</cxx_function_comment>
+    </for-which>
+
+    <!--========================================================================-->
+    <!--========================================================================-->
+
+    <!--========================================================================-->
+    <!-- for-which for="webcloak"                                               -->
+    <!--========================================================================-->
+    <for-which for="webcloak"
+        target="webcloak"
+        href="https://www.webcloak.com">
+        <text>WebCloak</text>
+        <author>$author$</author>
+        <organization>WebCloak</organization>
+        <copyright>yes</copyright>
+        <open_source>no</open_source>
+        <cxx_file_type>hpp</cxx_file_type>
+        <cxx_file_is_case>nocase</cxx_file_is_case>
+        <cxx_class_comment>yes</cxx_class_comment>
+        <cxx_function_comment>yes</cxx_function_comment>
     </for-which>
 
 </xenede:for>

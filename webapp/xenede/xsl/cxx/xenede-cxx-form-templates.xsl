@@ -83,14 +83,21 @@
     <xsl:param name="is_param_undef" select="''"/>
     <xsl:param name="is_param_namespace" select="'no'"/>
     <xsl:param name="is_param_typedef" select="''"/>
+
     <xsl:param name="is_param_typedef_comment" select="$is_param_typedef"/>
+    <xsl:param name="is_param_typedef_comment_fields" select="$is_param_typedef_comment"/>
+    <xsl:param name="is_param_is_typedef_comment_fields" select="$is_param_typedef_comment_fields"/>
     <xsl:param name="is_param_typedef_separator" select="''"/>
+
     <xsl:param name="is_param_enum" select="''"/>
     <xsl:param name="is_param_enum_comment" select="$is_param_enum"/>
+    <xsl:param name="is_param_enum_comment_fields" select="$is_param_enum_comment"/>
+    <xsl:param name="is_param_is_enum_comment_fields" select="$is_param_enum_comment_fields"/>
     <xsl:param name="is_param_enum_separator" select="''"/>
     <xsl:param name="is_param_enum_list" select="$is_param_enum"/>
     <xsl:param name="is_param_enum_item_before" select="$is_param_enum"/>
     <xsl:param name="is_param_enum_item_after" select="$is_param_enum"/>
+
     <xsl:param name="is_param_function_separator" select="$is_param_"/>
     <xsl:param name="is_param_function" select="$is_param_"/>
     <xsl:param name="is_param_function_comment" select="$is_param_function"/>
@@ -271,6 +278,15 @@
     <xsl:param name="typedef_comment_param" select="'typedef_comment'"/>
     <xsl:param name="typedef_comment" select="'no'"/>
 
+    <xsl:param name="is_typedef_comment_fields_param" select="'is_typedef_comment_fields'"/>
+    <xsl:param name="is_typedef_comment_fields" select="'yes'"/>
+
+    <xsl:param name="typedef_comment_fields_text" select="''"/>
+    <xsl:param name="typedef_comment_fields_text_before" select="'//...'"/>
+    <xsl:param name="typedef_comment_fields_text_after" select="''"/>
+    <xsl:param name="typedef_comment_fields_options" select="$cxx_typedef_comment_fields"/>
+    <xsl:param name="typedef_comment_fields_param" select="'typedef_comment_fields_'"/>
+
     <xsl:param name="enum_text" select="''"/>
     <xsl:param name="enum_text_before" select="'enum'"/>
     <xsl:param name="enum_text_after" select="''"/>
@@ -282,6 +298,15 @@
     <xsl:param name="enum_comment_text_after" select="$is_comment_text"/>
     <xsl:param name="enum_comment_param" select="'enum_comment'"/>
     <xsl:param name="enum_comment" select="'yes'"/>
+
+    <xsl:param name="is_enum_comment_fields_param" select="'is_enum_comment_fields'"/>
+    <xsl:param name="is_enum_comment_fields" select="'yes'"/>
+
+    <xsl:param name="enum_comment_fields_text" select="''"/>
+    <xsl:param name="enum_comment_fields_text_before" select="'//...'"/>
+    <xsl:param name="enum_comment_fields_text_after" select="''"/>
+    <xsl:param name="enum_comment_fields_options" select="$cxx_enum_comment_fields"/>
+    <xsl:param name="enum_comment_fields_param" select="'enum_comment_fields_'"/>
 
     <xsl:param name="enum_list_text" select="''"/>
     <xsl:param name="enum_list_text_before" select="'{'"/>
@@ -623,6 +648,23 @@
             <xsl:with-param name="value" select="$typedef_comment"/>
         </xsl:call-template>
     </xsl:if>
+
+    <xsl:if test="(('no' != $is_param_) and ('no' != $is_param_is_typedef_comment_fields)) or ('yes' = $is_param_is_typedef_comment_fields)">
+    <xsl:call-template name="hidden">
+        <xsl:with-param name="name" select="$is_typedef_comment_fields_param"/>
+        <xsl:with-param name="value" select="$is_typedef_comment_fields"/>
+    </xsl:call-template>
+    </xsl:if>
+    <xsl:if test="(('no' != $is_param_) and ('no' != $is_param_typedef_comment_fields)) or ('yes' = $is_param_typedef_comment_fields)">
+    <xsl:call-template name="checkboxes_row">
+        <xsl:with-param name="text" select="$typedef_comment_fields_text"/>
+        <xsl:with-param name="text_before" select="$typedef_comment_fields_text_before"/>
+        <xsl:with-param name="text_after" select="$typedef_comment_fields_text_after"/>
+        <xsl:with-param name="name" select="$typedef_comment_fields_param"/>
+        <xsl:with-param name="option" select="$typedef_comment_fields_options/*"/>
+    </xsl:call-template>
+    </xsl:if>
+
     <xsl:if test="(('no' != $is_param_) and ('no' != $is_param_typedef)) or ('yes' = $is_param_typedef)">
         <xsl:call-template name="input_row">
             <xsl:with-param name="text" select="$typedef_text"/>
@@ -646,6 +688,23 @@
             <xsl:with-param name="value" select="$enum_comment"/>
         </xsl:call-template>
     </xsl:if>
+
+    <xsl:if test="(('no' != $is_param_) and ('no' != $is_param_is_enum_comment_fields)) or ('yes' = $is_param_is_enum_comment_fields)">
+    <xsl:call-template name="hidden">
+        <xsl:with-param name="name" select="$is_enum_comment_fields_param"/>
+        <xsl:with-param name="value" select="$is_enum_comment_fields"/>
+    </xsl:call-template>
+    </xsl:if>
+    <xsl:if test="(('no' != $is_param_) and ('no' != $is_param_enum_comment_fields)) or ('yes' = $is_param_enum_comment_fields)">
+    <xsl:call-template name="checkboxes_row">
+        <xsl:with-param name="text" select="$enum_comment_fields_text"/>
+        <xsl:with-param name="text_before" select="$enum_comment_fields_text_before"/>
+        <xsl:with-param name="text_after" select="$enum_comment_fields_text_after"/>
+        <xsl:with-param name="name" select="$enum_comment_fields_param"/>
+        <xsl:with-param name="option" select="$enum_comment_fields_options/*"/>
+    </xsl:call-template>
+    </xsl:if>
+
     <xsl:if test="(('no' != $is_param_) and ('no' != $is_param_enum)) or ('yes' = $is_param_enum)">
         <xsl:call-template name="input_row">
             <xsl:with-param name="text" select="$enum_text"/>

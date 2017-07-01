@@ -1,5 +1,5 @@
 %########################################################################
-%# Copyright (c) 1988-2013 $organization$
+%# Copyright (c) 1988-2017 $organization$
 %#
 %# This software is provided by the author and contributors ``as is'' 
 %# and any express or implied warranties, including, but not limited to, 
@@ -13,22 +13,10 @@
 %# or otherwise) arising in any way out of the use of this software, 
 %# even if advised of the possibility of such damage.
 %#
-%#   File: xenede-vsprops.t
+%#   File: Other-author.t
 %#
 %# Author: $author$
-%#   Date: 2/3/2013
+%#   Date: 6/28/2017
 %########################################################################
 %with(%
-%filepath,%(%else-then(%filepath%,%(%filepath(%input%)%)%)%)%,%
-%props,%(%else-then(%props%,%(vsprops)%)%)%,%
-%file_type_extension,%(%props%)%,%
-%derived_includefile,%(%else(%derived_fileinclude%,%(%filepath%/xenede-%props%.t)%)%)%,%
-%xml_version,%(%else-then(%xml_version%,%(1.0)%)%)%,%
-%xml_encoding,%(%else-then(%xml_encoding%,%(Windows-1252)%)%)%,%
-%%(%
-%%if(%derived_includefile%,%(%
-%%include(%filepath%/xenede-xml.t)%%
-%)%,%(%
-%%include(%filepath%/xenede-props-common.t)%%
-%)%)%%
-%)%)%
+%%(%else-then(%include(%includepath%/%other%-author.t)%,%($$Author$$)%)%)%)%

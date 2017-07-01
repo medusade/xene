@@ -25,12 +25,15 @@
 %%(%
 %%if(%source_includefile%,%
 %%(%include(%includepath%/xenede-source-html.t)%)%,%(%
+%%else-then(%include(%filepath%/%organization_include%-hxx-cxx.t)%,%(%
 %%apply-x(%
 %lf,%(
 )%,%
+%organization_indent,%(%else-then(%organization_indent%,%(%include(%filepath%/%organization_include%-cxx-indent.t)%)%)%)%,%
+%base_indent,%(%else-then(%base_indent%,%(%else-then(%organization_indent%,%(    )%)%)%)%)%,%
 %_indent,%(%indent%)%,%
 %indent,%(%indent%%indent_%)%,%
-%indent_,%(    )%,%
+%indent_,%(%base_indent%)%,%
 %xde,%(%else-then(%xde%,%(xenede)%)%)%,%
 %_xde_,%(%else-then(%_xde_%,%(_)%)%)%,%
 %_xde_namespace,%(%else-then(%_xde_namespace%,%(%if-then(%_xde_%,%(namespace)%)%)%)%)%,%
@@ -115,13 +118,22 @@
 %separator,%(%else-then(%default_separator%,%(%else(%cpp_comments%,%
 %%( **********************************************************************)%,%
 %%(///////////////////////////////////////////////////////////////////////)%)%)%)%)%,%
-%begin_separator,%(%%indent%%%cc_%%else-then(%begin_default_separator%,%(%else(%cpp_comments%,%(%else(%cxx_comments%,%(/**)%,%(/*)%)%
+%organization_include_begin_separator,%
+%%(%else-then(%organization_include_begin_separator%,%
+%%(%include(%filepath%/%organization_include%-cxx-begin-separator.t)%)%)%)%,%
+%organization_include_end_separator,%
+%%(%else-then(%organization_include_end_separator%,%
+%%(%include(%filepath%/%organization_include%-cxx-end-separator.t)%)%)%)%,%
+%organization_include_left_separator,%
+%%(%else-then(%organization_include_left_separator%,%
+%%(%include(%filepath%/%organization_include%-cxx-left-separator.t)%)%)%)%,%
+%begin_separator,%(%else-then(%organization_include_begin_separator%,%(%%indent%%%cc_%%else-then(%begin_default_separator%,%(%else(%cpp_comments%,%(%else(%cxx_comments%,%(/**)%,%(/*)%)%
 %%indent%%)%,%()%)%%separator%
-)%)%)%,%
-%end_separator,%(%%indent%%%else-then(%end_default_separator%,%(%separator%%else(%cpp_comments%,%(
+)%)%)%)%)%,%
+%end_separator,%(%else-then(%organization_include_end_separator%,%(%%indent%%%else-then(%end_default_separator%,%(%separator%%else(%cpp_comments%,%(
 %%indent%% */)%,%()%)%)%)%%_cc%
-)%,%
-%left_separator,%(%%indent%%%else-then(%left_default_separator%,%(%else(%cpp_comments%,%( *)%,%(%else(%cppp_comments%,%(//)%,%(///)%)%)%)%)%)%)%,%
+)%)%)%,%
+%left_separator,%(%else-then(%organization_include_left_separator%,%(%%indent%%%else-then(%left_default_separator%,%(%else(%cpp_comments%,%( *)%,%(%else(%cppp_comments%,%(//)%,%(///)%)%)%)%)%)%)%)%)%,%
 %namespace,%(%else-then(%namespace%,%()%)%)%,%
 %no_namespace,%(%else-then(%no_namespace%,%(%equal(void,%namespace%)%)%)%)%,%
 %Namespace,%(%else-then(%Namespace%,%(%namespace%)%)%)%,%
@@ -416,6 +428,7 @@
 %%include(%filepath%/xenede-hxx-cxx-file.t)%%
 %)%,%(%
 %%include(%derived_fileinclude%%hxx_cxx_fileinclude%)%%
+%)%)%%
 %)%)%%
 %)%)%%
 %)%)%%
