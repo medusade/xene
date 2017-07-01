@@ -24,7 +24,7 @@
 #include "xene/xml/libxml2/libxslt/parameters.hpp"
 #include "xene/xml/xslt/processor.hpp"
 
-#include <libxml2/libxml/parser.h>
+#include <libxml/parser.h>
 #include <libxslt/xslt.h>
 #include <libxslt/transform.h>
 #include <libxslt/xsltutils.h>
