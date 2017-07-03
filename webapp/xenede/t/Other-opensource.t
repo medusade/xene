@@ -13,20 +13,12 @@
 %# or otherwise) arising in any way out of the use of this software, 
 %# even if advised of the possibility of such damage.
 %#
-%#   File: Other-cxx-file-begin.t
+%#   File: Other-opensource.t
 %#
 %# Author: $author$
-%#   Date: 6/28/2017
+%#   Date: 7/2/2017
 %########################################################################
 %with(%
-%other_other,%(%else(%other%,%(//////////////)%,%( %other% )%)%)%,%
-%%(%cc_%///////////////////////////////////////////////////////////////////////////////
-// %do(%include(%copyright_text_include%)%)%
-///////////////////////////////////////////////////////////////////////////////
-////////////////////////////////%other_other%/////////////////////////////////
-//
-//   File: %File%
-// Author: %author%, %company%, %date%
-//
-////////////////////////////////%other_other%/////////////////////////////////%_cc%
-)%)%
+%%(%
+%)%)%        
+

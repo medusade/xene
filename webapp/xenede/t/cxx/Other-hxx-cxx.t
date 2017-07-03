@@ -136,7 +136,7 @@
 //
 //   File: %File%
 // Author: %author%, %company%, %date%
-// ​
+//
 ////////////////////////////////%other_other%/////////////////////////////////%_cc%
 %
 %%if(%file_header%,%(%
