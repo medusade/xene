@@ -72,10 +72,15 @@
 %Function,%(%else-then(%Function%,%(%function%)%)%)%,%
 %FUNCTION,%(%else-then(%FUNCTION%,%(%toupper(%Function%)%)%)%)%,%
 %function,%(%else-then(%_Function%,%(%tolower(%Function%)%)%)%)%,%
+%file_name,%(%else-then(%file_name%,%(%filebase(%file%)%)%)%)%,%
+%File_name,%(%else-then(%File_name%,%(%file_name%)%)%)%,%
+%FILE_NAME,%(%else-then(%FILE_NAME%,%(%toupper(%File_name%)%)%)%)%,%
+%file_name,%(%else-then(%_File_name%,%(%tolower(%File_name%)%)%)%)%,%
 %file_type,%(%else-then(%file_type%,%(hpp)%)%)%,%
 %File_type,%(%else-then(%File_type%,%(%file_type%)%)%)%,%
 %FILE_TYPE,%(%else-then(%FILE_TYPE%,%(%toupper(%File_type%)%)%)%)%,%
 %file_type,%(%else-then(%_File_type%,%(%tolower(%File_type%)%)%)%)%,%
+%file_extension,%(%else-then(%file_extension%,%(%fileextension(%file%)%)%)%)%,%
 %file_extension,%(%else-then(%file_extension%,%(%
 %%switch(%File_type%,hxx,hxx,hpp,hh,h,h,cxx,cxx,cpp,cc,c,c)%%
 %)%)%)%,%
@@ -93,6 +98,7 @@
 %file_header,%(%else-then(%file_header%,%(%
 %%switch(%File_type%,hxx,hxx,hpp,hh,h,h)%%
 %)%)%)%,%
+%name,%(%else-then(%name%,%(%File_name%)%)%)%,%
 %name,%(%else-then(%name%,%(%Class%)%)%)%,%
 %Name,%(%else-then(%Name%,%(%name%)%)%)%,%
 %NAME,%(%else-then(%NAME%,%(%toupper(%Name%)%)%)%)%,%
@@ -101,10 +107,12 @@
 %Extension,%(%else-then(%Extension%,%(%extension%)%)%)%,%
 %EXTENSION,%(%else-then(%EXTENSION%,%(%toupper(%Extension%)%)%)%)%,%
 %extension,%(%else-then(%_Extension%,%(%tolower(%Extension%)%)%)%)%,%
+%file,%(%if-then(%File_name%,%(%then-if(%Extension%,.)%)%)%)%,%
 %file,%(%else-then(%file%,%(%Name%.%Extension%)%)%)%,%
 %File,%(%else-then(%File%,%(%file%)%)%)%,%
 %FILE,%(%else-then(%FILE%,%(%toupper(%File%)%)%)%)%,%
 %file,%(%else-then(%_File%,%(%tolower(%File%)%)%)%)%,%
+%ifndef_namespace,%(%else-then(%ifndef_namespace%,%(%module%)%)%)%,%
 %ifndef_namespace,%(%else-then(%ifndef_namespace%,%(%class_namespace%)%)%)%,%
 %ifndef_namespace,%(%else-then(%parse(%ifndef_namespace%,/,,_)%,%(%ifndef_namespace%)%)%)%,%
 %Ifndef_namespace,%(%else-then(%Ifndef_namespace%,%(%ifndef_namespace%)%)%)%,%
@@ -122,15 +130,20 @@
 %Include_system,%(%else-then(%Include_system%,%(%include_system%)%)%)%,%
 %INCLUDE_SYSTEM,%(%else-then(%INCLUDE_SYSTEM%,%(%toupper(%Include_system%)%)%)%)%,%
 %include_system,%(%else-then(%_Include_system%,%(%tolower(%Include_system%)%)%)%)%,%
+%include_namespace,%(%else-then(%include_namespace%,%(%module%)%)%)%,%
 %include_namespace,%(%else-then(%include_namespace%,%(%class_namespace%)%)%)%,%
 %include_namespace,%(%else-then(%parse(%include_namespace%,/,,/)%,%(%include_namespace%)%)%)%,%
 %Include_namespace,%(%else-then(%Include_namespace%,%(%include_namespace%)%)%)%,%
 %INCLUDE_NAMESPACE,%(%else-then(%INCLUDE_NAMESPACE%,%(%toupper(%Include_namespace%)%)%)%)%,%
 %include_namespace,%(%else-then(%_Include_namespace%,%(%tolower(%Include_namespace%)%)%)%)%,%
+%namespace,%(%else-then(%namespace%,%(%class_namespace%)%)%)%,%
+%Namespace,%(%else-then(%Namespace%,%(%namespace%)%)%)%,%
+%NAMESPACE,%(%else-then(%NAMESPACE%,%(%toupper(%Namespace%)%)%)%)%,%
+%namespace,%(%else-then(%_Namespace%,%(%tolower(%Namespace%)%)%)%)%,%
 %other_other,%(%else(%other%,%(//////////////)%,%( %other% )%)%)%,%
 %%(%
 %%cc_%///////////////////////////////////////////////////////////////////////////////
-// %include(%copyright_text_include%)%
+// %do(%include(%copyright_text_include%)%)%
 ///////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////%other_other%/////////////////////////////////
 //
@@ -153,6 +166,13 @@
 %%parse(%Include_system%,;,,,,%(%_#include_% %ii_%%lt%%Include_system%%gt%%_ii%
 %
 %)%,Include_system)%%
+%)%)%%
+%%if(%Namespace%,%(%
+%
+%
+%%parse(%Namespace%,/,,,,%(%
+%%_namespace_% %Namespace% {
+%)%,Namespace)%%
 %)%)%%
 %%if(%Class%,%(%
 %
@@ -183,7 +203,7 @@
   %_virtual_% ~%Class%() {
   }
 
-  %cc_%//-----------------------------------------------------------------------------
+%if(%Function%,%(%parse(%Function%,;,,,,%(  %cc_%//-----------------------------------------------------------------------------
   /**
   * Function: %Function%
   */
@@ -192,6 +212,7 @@
     %Function_return% %Function_result%%then-if(%Function_result_value%,%( = )%)%;
     %_return_% %Function_result%;
   }
+)%,Function)%)%)%
 
   %cc_%//*****************************************************************************
   // PROTECTED
@@ -205,12 +226,26 @@
 };
 %
 %)%)%%
+%%if(%Namespace%,%(%
+%
+%
+%%reverse-parse(%Namespace%,/,,,,%(%
+%} %cc_%//%_cc% %_namespace_% %Namespace%
+%)%,Namespace)%%
+%)%)%%
 %
 %_#endif_% %cc_%// %File_ifndef% %_cc%
 %
 %)%,%(%
-%%_#include_% %ii_%"%if-then(%Include_namespace%/)%%Name%.%File_header_extension%"%_ii%"
+%%_#include_% %ii_%"%if-then(%Include_namespace%,/)%%Name%.%File_header_extension%"%_ii%
 %
+%%if(%Namespace%,%(%
+%
+%
+%%parse(%Namespace%,/,,,,%(%
+%%_namespace_% %Namespace% {
+%)%,Namespace)%%
+%)%)%%
 %%if(%Class%,%(%
 %
 %cc_%//-----------------------------------------------------------------------------
@@ -219,6 +254,13 @@
 */
 //-----------------------------------------------------------------------------%_cc%
 %
+%)%)%%
+%%if(%Namespace%,%(%
+%
+%
+%%reverse-parse(%Namespace%,/,,,,%(%
+%} %cc_%//%_cc% %_namespace_% %Namespace%
+%)%,Namespace)%%
 %)%)%%
 %
 %

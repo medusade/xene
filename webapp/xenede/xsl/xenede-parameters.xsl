@@ -247,8 +247,7 @@
 <xsl:param name="current_date_location">
     <xsl:value-of select="'http://'"/>
     <xsl:value-of select="$current_date_host"/>
-    <!--xsl:value-of select="'/xenede/t/xenede-date-to-xml.t?content_type=xml'"/-->
-    <xsl:value-of select="'/texta/t/xml/texta-date-xml.t?content_type=xml'"/>
+    <xsl:value-of select="'/xenede/t/xenede-date-to-xml.t?content_type=xml'"/>
 </xsl:param>
 
 <!--========================================================================-->
