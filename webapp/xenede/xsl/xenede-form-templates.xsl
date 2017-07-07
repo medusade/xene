@@ -21,12 +21,13 @@
 <!--========================================================================-->
 <xsl:transform
  xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+ xmlns:exsl="http://exslt.org/common"
  xmlns:xalan="http://xml.apache.org/xalan"
  xmlns:xde="Medusa-Xos-Development-Environment"
  xmlns:mxde="Medusa-Xos-Development-Environment"
  xmlns:medusade="Medusa-Xos-Development-Environment"
  xmlns:msxsl="urn:schemas-microsoft-com:xslt"
- exclude-result-prefixes="xsl xalan xde mxde medusade msxsl"
+ exclude-result-prefixes="xsl exsl xalan xde mxde medusade msxsl"
  version="1.0">
 
 <!--========================================================================-->
@@ -51,6 +52,13 @@
         </xsl:otherwise>
     </xsl:choose>
 </xsl:variable>
+
+<xsl:variable name="default_file_extensions_tree">
+    <type value="">yes</type>
+    <type value="" default="yes">no</type>
+</xsl:variable>
+<xsl:variable name="default_file_extensions"
+ select="exsl:node-set($default_file_extensions_tree)"/>
 
 <!--========================================================================-->
 <!-- Templates                                                              -->
@@ -342,6 +350,10 @@
     <xsl:param name="content_type" select="'text/html'"/>
     <xsl:param name="is_param_file" select="'yes'"/>
     <xsl:param name="file" select="''"/>
+    <xsl:param name="is_param_file_extension" select="'no'"/>
+    <xsl:param name="file_extension_param" select="'file_type_extension'"/>
+    <xsl:param name="file_extension" select="''"/>
+    <xsl:param name="file_extensions" select="$default_file_extensions"/>
     <xsl:param name="is_param_for" select="'no'"/>
     <xsl:param name="date" select="''"/>
     <xsl:param name="year" select="''"/>
@@ -360,6 +372,10 @@
         <xsl:with-param name="is_param_" select="'no'"/>
         <xsl:with-param name="is_param_file" select="$is_param_file"/>
         <xsl:with-param name="file" select="$file"/>
+        <xsl:with-param name="is_param_file_extension" select="$is_param_file_extension"/>
+        <xsl:with-param name="file_extension_param" select="$file_extension_param"/>
+        <xsl:with-param name="file_extension" select="$file_extension"/>
+        <xsl:with-param name="file_extensions" select="$file_extensions"/>
         <xsl:with-param name="is_param_for" select="$is_param_for"/>
         <xsl:with-param name="file_date" select="$date"/>
         <xsl:with-param name="copyright_year" select="$year"/>
@@ -400,6 +416,8 @@
     <xsl:param name="is_param_section" select="''"/>
     <xsl:param name="is_param_separator" select="'no'"/>
     <xsl:param name="is_param_file" select="''"/>
+    <xsl:param name="is_param_file_extension" select="'no'"/>
+    <xsl:param name="file_extensions" select="$default_file_extensions"/>
     <xsl:param name="is_param_for" select="'no'"/>
     <xsl:param name="is_param_author" select="''"/>
     <xsl:param name="is_param_organization" select="''"/>
@@ -415,6 +433,14 @@
     <xsl:param name="file_text_after" select="''"/>
     <xsl:param name="file_param" select="'file'"/>
     <xsl:param name="file" select="''"/>
+
+    <xsl:param name="file_extension_text" select="''"/>
+    <xsl:param name="file_extension_text_before" select="''"/>
+    <xsl:param name="file_extension_text_after" select="''"/>
+    <xsl:param name="file_extension_option" select="''"/>
+    <xsl:param name="file_extension_options" select="$file_extensions/*"/>
+    <xsl:param name="file_extension_param" select="'file_extension'"/>
+    <xsl:param name="file_extension" select="''"/>
 
     <xsl:param name="for_text" select="'For'"/>
     <xsl:param name="for_text_before" select="''"/>
@@ -477,6 +503,16 @@
             <xsl:with-param name="text_after" select="$file_text_after"/>
             <xsl:with-param name="name" select="$file_param"/>
             <xsl:with-param name="value" select="$file"/>
+        </xsl:call-template>
+    </xsl:if>
+    <xsl:if test="(('no' != $is_param_) and ('no' != $is_param_file_extension)) or ('yes' = $is_param_file_extension)">
+        <xsl:call-template name="radios_row">
+            <xsl:with-param name="text" select="$file_extension_text"/>
+            <xsl:with-param name="text_before" select="$file_extension_text_before"/>
+            <xsl:with-param name="text_after" select="$file_extension_text_after"/>
+            <xsl:with-param name="name" select="$file_extension_param"/>
+            <xsl:with-param name="value" select="$file_extension"/>
+            <xsl:with-param name="option" select="$file_extension_options"/>
         </xsl:call-template>
     </xsl:if>
     <xsl:if test="(('no' != $is_param_) and ('no' != $is_param_for)) or ('yes' = $is_param_for)">

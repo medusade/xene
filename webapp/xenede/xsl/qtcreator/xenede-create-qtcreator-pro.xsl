@@ -46,6 +46,14 @@
 <!--========================================================================-->
 <!-- Variables                                                              -->
 <!--========================================================================-->
+<xsl:variable name="pro_file_extensions_tree">
+    <type value="pro" default="yes">.pro</type>
+    <type value="pri">.pri</type>
+    <type value="">no</type>
+</xsl:variable>
+<xsl:variable name="pro_file_extensions"
+ select="exsl:node-set($pro_file_extensions_tree)"/>
+
 <xsl:variable name="target_types_tree">
     <type value="executable" default="yes">executable</type>
     <type value="shared-library">shared library (.so)</type>
@@ -215,6 +223,8 @@
     <!-- Template Body                                                          -->
     <!--========================================================================-->
     <xsl:call-template name="file_type_form_fields">
+    <xsl:with-param name="is_param_file_extension" select="'yes'"/>
+    <xsl:with-param name="file_extensions" select="$pro_file_extensions"/>
     </xsl:call-template>
     <xsl:call-template name="qtcreator_form_fields">
     </xsl:call-template>
