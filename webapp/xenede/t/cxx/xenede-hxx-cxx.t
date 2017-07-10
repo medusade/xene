@@ -387,6 +387,10 @@
 %Module,%(%else-then(%Module%,%(%module%)%)%)%,%
 %MODULE,%(%else-then(%MODULE%,%(%toupper(%Module%)%)%)%)%,%
 %module,%(%else-then(%_Module%,%(%tolower(%Module%)%)%)%)%,%
+%module_path,%(%else-then(%module_path%,%(%if-then(%parse(%parse(%Module%,;,,/)%,_,,/)%,%(/)%)%)%)%)%,%
+%Module_path,%(%else-then(%Module_path%,%(%module_path%)%)%)%,%
+%MODULE_PATH,%(%else-then(%MODULE_PATH%,%(%toupper(%Module_path%)%)%)%)%,%
+%module_path,%(%else-then(%_Module_path%,%(%tolower(%Module_path%)%)%)%)%,%
 %file_module,%(%else-then(%file_module%,%(%if-then(%Module%,%(_)%)%)%)%)%,%
 %File_module,%(%else-then(%File_module%,%(%file_module%)%)%)%,%
 %FILE_MODULE,%(%else-then(%FILE_MODULE%,%(%toupper(%File_module%)%)%)%)%,%

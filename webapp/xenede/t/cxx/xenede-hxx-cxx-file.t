@@ -68,7 +68,7 @@
 %
 %)%,import)%%
 %)%,%(%
-%%_#include_% %ii_%"%File_base%.%file_hxx_extension%"%_ii%
+%%_#include_% %ii_%"%Module_path%%File_base%.%file_hxx_extension%"%_ii%
 %
 %)%)%%
 %)%)%%
