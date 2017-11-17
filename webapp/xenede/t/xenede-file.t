@@ -40,7 +40,7 @@
 %%do(%left_separator%)%%padd(, ,%separator_padd%)%%do(%right_separator%)%%
 %)%)%%
 %%if(%comment_fields_file%,%(%
-%%do(%left_separator%)%%padd(   File: %file%, ,%separator_padd%)%%do(%right_separator%)%%
+%%do(%left_separator%)%%padd(   File: %File%, ,%separator_padd%)%%do(%right_separator%)%%
 %)%)%%
 %%if(%and(%comment_fields_author%,%comment_fields_date%)%,%(%
 %%do(%left_separator%)%%padd(, ,%separator_padd%)%%do(%right_separator%)%%

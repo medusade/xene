@@ -23,6 +23,14 @@
 %File,%(%else-then(%File%,%(%file%)%)%)%,%
 %FILE,%(%else-then(%FILE%,%(%toupper(%File%)%)%)%)%,%
 %file,%(%else-then(%_File%,%(%tolower(%File%)%)%)%)%,%
+%organization,%(%else-then(%organization%,%($organization$)%)%)%,%
+%Organization,%(%else-then(%Organization%,%(%organization%)%)%)%,%
+%ORGANIZATION,%(%else-then(%ORGANIZATION%,%(%toupper(%Organization%)%)%)%)%,%
+%organization,%(%else-then(%_Organization%,%(%tolower(%Organization%)%)%)%)%,%
+%author,%(%else-then(%author%,%($author$)%)%)%,%
+%Author,%(%else-then(%Author%,%(%author%)%)%)%,%
+%AUTHOR,%(%else-then(%AUTHOR%,%(%toupper(%Author%)%)%)%)%,%
+%author,%(%else-then(%_Author%,%(%tolower(%Author%)%)%)%)%,%
 %project,%(%else-then(%project%,%(Project)%)%)%,%
 %Project,%(%else-then(%Project%,%(%project%)%)%)%,%
 %PROJECT,%(%else-then(%PROJECT%,%(%toupper(%Project%)%)%)%)%,%
@@ -31,8 +39,8 @@
 %Output,%(%else-then(%Output%,%(%output%)%)%)%,%
 %OUTPUT,%(%else-then(%OUTPUT%,%(%toupper(%Output%)%)%)%)%,%
 %output,%(%else-then(%_Output%,%(%tolower(%Output%)%)%)%)%,%
-%input,%(%else-then(%input%,%(../../src)%)%)%,%
-%Input,%(%else-then(%Input%,%(%input%)%)%)%,%
+%input,%(%else-then(%_input%,%(../../src)%)%)%,%
+%Input,%(%else-then(%Input%,%(%_input%)%)%)%,%
 %INPUT,%(%else-then(%INPUT%,%(%toupper(%Input%)%)%)%)%,%
 %input,%(%else-then(%_Input%,%(%tolower(%Input%)%)%)%)%,%
 %exclude,%(%else-then(%exclude%,%(Exclude)%)%)%,%
@@ -50,8 +58,26 @@
 %%(%
 %
 #---------------------------------------------------------------------------
+# Copyright (c) 1988-%year()% %Organization%
+#
+# This software is provided by the author and contributors ``as is''
+# and any express or implied warranties, including, but not limited to,
+# the implied warranties of merchantability and fitness for a particular
+# purpose are disclaimed. In no event shall the author or contributors
+# be liable for any direct, indirect, incidental, special, exemplary,
+# or consequential damages (including, but not limited to, procurement
+# of substitute goods or services; loss of use, data, or profits; or
+# business interruption) however caused and on any theory of liability,
+# whether in contract, strict liability, or tort (including negligence
+# or otherwise) arising in any way out of the use of this software,
+# even if advised of the possibility of such damage.
+#
 # File: %File%
+#
+# Author: %Author%
 # Date: %date()%
+#
+# Doxyfile for %Project%
 #---------------------------------------------------------------------------
 
 # This file describes the settings to be used by the documentation system
@@ -86,20 +112,20 @@ PROJECT_NAME           = "%Project%"
 # This could be handy for archiving the generated documentation or
 # if some version control system is used.
 
-PROJECT_NUMBER         = 
+PROJECT_NUMBER         = %Number%
 
 # Using the PROJECT_BRIEF tag one can provide an optional one line description
 # for a project that appears at the top of each page and should give viewer
 # a quick idea about the purpose of the project. Keep the description short.
 
-PROJECT_BRIEF          = 
+PROJECT_BRIEF          = "%Brief%"
 
 # With the PROJECT_LOGO tag one can specify an logo or icon that is
 # included in the documentation. The maximum height of the logo should not
 # exceed 55 pixels and the maximum width should not exceed 200 pixels.
 # Doxygen will copy the logo to the output directory.
 
-PROJECT_LOGO           = 
+PROJECT_LOGO           = %Logo%
 
 # The OUTPUT_DIRECTORY tag is used to specify the (relative or absolute)
 # base path where the generated documentation will be put.
@@ -154,7 +180,7 @@ REPEAT_BRIEF           = YES
 # "The $name file" "is" "provides" "specifies" "contains"
 # "represents" "a" "an" "the"
 
-ABBREVIATE_BRIEF       =
+ABBREVIATE_BRIEF       = NO
 
 # If the ALWAYS_DETAILED_SEC and REPEAT_BRIEF tags are both set to YES then
 # Doxygen will generate a detailed section even if there is only a brief

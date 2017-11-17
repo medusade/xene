@@ -31,6 +31,9 @@
 %file_base,%(%else-then(%file_base%,%(%filebase(%file%)%)%)%)%,%
 %file_extension,%(%else-then(%file_extension%,%(%fileextension(%file%)%)%)%)%,%
 %file,%(%if-then(%file%,%(%else(%file_extension%,%(%then-if(%file_type_extension%,%(.)%)%)%)%)%)%)%,%
+%File,%(%else-then(%File%,%(%file%)%)%)%,%
+%FILE,%(%else-then(%FILE%,%(%toupper(%File%)%)%)%)%,%
+%file,%(%else-then(%_File%,%(%tolower(%File%)%)%)%)%,%
 %left_comment,%(#)%,%
 %right_comment,%()%,%
 %middle_comment,%(%%indent%%%left_comment%)%,%

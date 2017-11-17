@@ -40,6 +40,10 @@
 %%(%
 %%if(%Class%,%(%
 %%
+%%if(%Implements_typedef%,%(%_typedef_% %do(%Implements_typedef%)%;
+)%)%%
+%%if(%Extends_typedef%,%(%_typedef_% %do(%Extends_typedef%)%;
+)%)%%
 %%if(%class_template%%class_pattern_tc%%implements_pattern_tc%%extends_pattern_tc%,%(%
 %%else-no(%cbases%,%(%
 %%_#undef_% CDB_CLASS

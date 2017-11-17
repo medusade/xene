@@ -27,6 +27,15 @@
 %%if(%source_includefile%,%
 %%(%include(%includepath%/xenede-source-html.t)%)%,%(%
 %%with(%
+%organization,%(%else-then(%organization%,%()%)%)%,%
+%Organization,%(%else-then(%Organization%,%(%organization%)%)%)%,%
+%ORGANIZATION,%(%else-then(%ORGANIZATION%,%(%toupper(%Organization%)%)%)%)%,%
+%author,%(%else-then(%author%,%()%)%)%,%
+%Author,%(%else-then(%Author%,%(%author%)%)%)%,%
+%AUTHOR,%(%else-then(%AUTHOR%,%(%toupper(%Author%)%)%)%)%,%
+%date,%(%else-then(%date%,%(%date()%)%)%)%,%
+%Date,%(%else-then(%Date%,%(%date%)%)%)%,%
+%DATE,%(%else-then(%DATE%,%(%toupper(%Date%)%)%)%)%,%
 %organization_include_file_begin,%(%else-then(%organization_include_file_begin%,%(%filepath%/%organization_include%-t-file-begin.t)%)%)%,%
 %organization_include_file_end,%(%else-then(%organization_include_file_end%,%(%filepath%/%organization_include%-t-file-end.t)%)%)%,%
 %file_type_extension,%(%else-then(%file_type_extension%,%(t)%)%)%,%
