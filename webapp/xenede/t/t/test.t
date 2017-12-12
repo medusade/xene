@@ -1,1 +1,0 @@
-%include(c:/source/mxde/doc/t/t/xenede-t-begin.t)%%include(c:/source/mxde/doc/t/t/xenede-t-end.t)%
